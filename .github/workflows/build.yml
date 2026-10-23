@@ -56,3 +56,19 @@ jobs:
 
           # enabled by default, disable if your image is small and you want faster builds
           maximize_build_space: true
+  
+  build-success:
+    name: build-success
+    if: always()
+    needs:
+      - recipes
+      - bluebuild
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify build result
+        env:
+          RECIPES_RESULT: ${{ needs.recipes.result }}
+          BLUEBUILD_RESULT: ${{ needs.bluebuild.result }}
+        run: |
+          test "$RECIPES_RESULT" = "success"
+          test "$BLUEBUILD_RESULT" = "success"
