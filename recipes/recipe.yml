@@ -1,13 +1,13 @@
 ---
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 # image will be published to ghcr.io/<user>/<name>
-name: bazzite-dx-nvidia_with-tuxedo-drivers
+name: bazzite-dx-nvidia-tuxedo
 # Add alt tags alongside the latest tag
 alt-tags:
   - latest
   - stable
 # description will be included in the image's metadata
-description: Custom Bazzite DX Nvidia with Tuxedo Drivers.
+description: Bazzite DX Nvidia with Tuxedo Drivers.
 
 # the base image to build on top of (FROM) and the version tag to use
 base-image: ghcr.io/ublue-os/bazzite-dx-nvidia
@@ -25,12 +25,7 @@ modules:
   
   # adding rpm-ostree repos
   - type: rpm-ostree
-    repos:
-      # Waydroid Helper repo (cuteneko)
-      - https://copr.fedorainfracloud.org/coprs/cuteneko/waydroid-helper/repo/fedora-44/cuteneko-waydroid-helper-fedora-44.repo
     install:
-      - waydroid-helper
-      - android-tools
       # building tools
       - git
       - make
