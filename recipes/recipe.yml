@@ -28,6 +28,8 @@ modules:
       # tuxedo drivers repo
       - https://copr.fedorainfracloud.org/coprs/darrencocco/tuxedo-drivers-kmod/repo/fedora-44/darrencocco-tuxedo-drivers-kmod-fedora-44.repo
       - https://raw.githubusercontent.com/yavasdev/bazzite-custom-os-build/main/files/system/etc/yum.repos.d/tuxedo.repo
+      # Waydroid Helper reposu (cuteneko)
+      - https://copr.fedorainfracloud.org/coprs/cuteneko/waydroid-helper/repo/fedora-44/cuteneko-waydroid-helper-fedora-44.repo
     install:
       - tuxedo-drivers-kmod
       - tuxedo-control-center
