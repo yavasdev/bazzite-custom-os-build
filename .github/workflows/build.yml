@@ -1,4 +1,4 @@
-name: bluebuild
+name: Build Bazzite Tuxedo Images
 on:
   schedule:
     - cron:
@@ -19,7 +19,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   bluebuild:
-    name: Build bazzite Images
+    name: Build Bazzite Tuxedo Images
     runs-on: ubuntu-latest
     permissions:
       contents: read

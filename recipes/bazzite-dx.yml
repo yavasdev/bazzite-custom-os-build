@@ -31,6 +31,12 @@ modules:
       - make
       - gcc
       - kmod
+      - curl
+      - wget
+      - rpm2cpio
+      - cpio
+      - kernel-devel
+      - kernel-devel-matched
 
   # bash script for setting up.
   - type: script

@@ -1,10 +1,16 @@
-# Bazzite Linux Builds with Tuxedo Drivers and Apps &nbsp;
-[![bazzite-dx-nvidia](https://github.com/yavasdev/bazzite-tuxedo/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/yavasdev/bazzite-tuxedo/actions/workflows/build.yml)
+# Bazzite Linux Builds with Tuxedo Drivers and Apps
+[![Build Bazzite Tuxedo Images](https://github.com/yavasdev/bazzite-tuxedo/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/yavasdev/bazzite-tuxedo/actions/workflows/build.yml)
 
 
 [🇺🇸 English](README.md) | [🇹🇷 Türkçe](docs/README-TR.md) 
 
-This repository builds a custom **Atomic (Immutable) Linux** operating system image based with tuxedo drivers and apps on Bazzite DX Nvidia ([github](https://github.com/ublue-os/bazzite-dx) / [image](https://ghcr.io/ublue-os/bazzite-dx-nvidia)), specifically tailored for Tuxedo or other Clevo laptops.
+This repository builds custom **Atomic (Immutable) Linux** operating system images with Tuxedo drivers and apps on Bazzite DX ([GitHub](https://github.com/ublue-os/bazzite-dx) / [image](https://ghcr.io/ublue-os/bazzite-dx)), specifically tailored for Tuxedo or other Clevo laptops.
+
+Available images:
+
+- `ghcr.io/yavasdev/bazzite-tuxedo` (default Bazzite image)
+- `ghcr.io/yavasdev/bazzite-dx-nvidia-tuxedo`
+- `ghcr.io/yavasdev/bazzite-dx-tuxedo`
 
 The following features are integrated natively on top of the original Bazzite image:
 - **Tuxedo Drivers:** Up-to-date kernel modules compiled from source and baked directly into the system.
@@ -17,31 +23,33 @@ The following features are integrated natively on top of the original Bazzite im
 ## Installation
 
 > [!WARNING]  
-> This process will replace your current Atomic Fedora / Bazzite operating system image. Make sure your current OS is an Nvidia variant before proceeding.
+> This process will replace your current Atomic Fedora / Bazzite operating system image. Make sure that the image variant you choose matches your hardware and current installation.
 
 > [!WARNING]  
-> I didn't test it currently, just writing right now, try at your own discreation.
+> These images are experimental and have not been fully tested. Use them at your own discretion.
 
-To rebase an existing atomic Fedora installation to the latest build:
+To rebase an existing Atomic Fedora installation to the default Bazzite Tuxedo image:
 
-- First rebase to the unsigned image, to get the proper signing keys and policies installed:
+- First rebase to the unsigned image to install the signing keys and policies:
   ```
-  rpm-ostree rebase ostree-unverified-registry:ghcr.io/yavasdev/bazzite-dx-nvidia_with-tuxedo-drivers:latest
+  rpm-ostree rebase ostree-unverified-registry:ghcr.io/yavasdev/bazzite-tuxedo:latest
   ```
 - Reboot to complete the rebase:
   ```
   systemctl reboot
   ```
-- Then switch to the Signed and Secure Image:
+- Then switch to the signed image:
   ```
-  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/yavasdev/bazzite-dx-nvidia_with-tuxedo-drivers:latest
+  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/yavasdev/bazzite-tuxedo:latest
   ```
 - Reboot again to complete the installation:
   ```
   systemctl reboot
   ```
 
-The `latest` tag will automatically pull the newest and most stable build for the Fedora version you have specified.
+For another variant, replace `bazzite-tuxedo` in the commands above with `bazzite-dx-nvidia-tuxedo` or `bazzite-dx-tuxedo`.
+
+The `latest` tag points to the newest build for the configured Fedora version. The `stable` tag is also published by the recipes.
 
 
 ## Verification
@@ -49,7 +57,7 @@ The `latest` tag will automatically pull the newest and most stable build for th
 These images are digitally signed using [Sigstore](https://www.sigstore.dev/)'s [cosign](https://github.com/sigstore/cosign) tool. To verify the authenticity of the image, you can download the `cosign.pub` file from this repository and run the following command:
 
 ```bash
-cosign verify --key cosign.pub ghcr.io/yavasdev/bazzite-dx-nvidia_with-tuxedo-drivers
+cosign verify --key cosign.pub ghcr.io/yavasdev/bazzite-tuxedo:latest
 ```
 
 ---

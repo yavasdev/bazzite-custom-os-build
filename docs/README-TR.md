@@ -1,8 +1,14 @@
-# Bazzite DX Nvidia (Tuxedo Edition) &nbsp; [![build badge](https://github.com/yavasdev/bazzite-custom-os-build/actions/workflows/build.yml/badge.svg)](https://github.com/yavasdev/bazzite-custom-os-build/actions/workflows/build.yml)
+# Bazzite DX Tuxedo İmajları &nbsp; [![Build Bazzite Tuxedo Images](https://github.com/yavasdev/bazzite-tuxedo/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/yavasdev/bazzite-tuxedo/actions/workflows/build.yml)
 
 [🇺🇸 English](README.md) | [🇹🇷 Türkçe](docs/README-TR.md)
 
-Bu depo, özellikle Tuxedo veya diğer Clevo dizüstü bilgisayarlar için uyarlanmış, Bazzite DX Nvidia ([github](https://github.com/ublue-os/bazzite-dx) / [imaj](https://ghcr.io/ublue-os/bazzite-dx-nvidia)) temel alınarak tuxedo sürücüleri ve uygulamalarıyla donatılmış özel bir **Atomik (Değişmez) Linux** işletim sistemi imajı oluşturur.
+Bu depo, özellikle Tuxedo veya diğer Clevo dizüstü bilgisayarlar için uyarlanmış, Bazzite DX ([GitHub](https://github.com/ublue-os/bazzite-dx) / [imaj](https://ghcr.io/ublue-os/bazzite-dx)) temel alınarak Tuxedo sürücüleri ve uygulamalarıyla donatılmış özel **Atomik (Değişmez) Linux** işletim sistemi imajları oluşturur.
+
+Kullanılabilir imajlar:
+
+- `ghcr.io/yavasdev/bazzite-tuxedo` (varsayılan Bazzite imajı)
+- `ghcr.io/yavasdev/bazzite-dx-nvidia-tuxedo`
+- `ghcr.io/yavasdev/bazzite-dx-tuxedo`
 
 Aşağıdaki özellikler, orijinal Bazzite imajının üzerine doğrudan entegre edilmiştir:
 - **Tuxedo Sürücüleri:** Kaynaktan derlenmiş ve doğrudan sisteme dahil edilmiş güncel çekirdek (kernel) modülleri.
@@ -14,35 +20,37 @@ Aşağıdaki özellikler, orijinal Bazzite imajının üzerine doğrudan entegre
 ## Kurulum
 
 > [!WARNING]  
-> Bu işlem, mevcut Atomik Fedora / Bazzite işletim sistemi imajınızı değiştirecektir. Devam etmeden önce mevcut işletim sisteminizin bir Nvidia varyantı olduğundan emin olun.
+> Bu işlem, mevcut Atomik Fedora / Bazzite işletim sistemi imajınızı değiştirecektir. Seçtiğiniz imaj varyantının donanımınız ve mevcut kurulumunuzla uyumlu olduğundan emin olun.
 
-Mevcut bir atomik Fedora kurulumunu en son sürüme rebase etmek (yeniden temellendirmek) için:
+Varsayılan Bazzite Tuxedo imajını mevcut bir Atomik Fedora kurulumuna rebase etmek (yeniden temellendirmek) için:
 
-- Gerekli imzalama anahtarlarının ve ilkelerinin yüklenmesi için öncelikle imzasız imaja rebase edin:
+- İmzalama anahtarlarını ve ilkelerini yüklemek için önce varsayılan imzasız imaja rebase edin:
   ```
-  rpm-ostree rebase ostree-unverified-registry:ghcr.io/yavasdev/bazzite-dx-nvidia_with-tuxedo-drivers:latest
+  rpm-ostree rebase ostree-unverified-registry:ghcr.io/yavasdev/bazzite-tuxedo:latest
   ```
 - Rebase işlemini tamamlamak için yeniden başlatın:
   ```
   systemctl reboot
   ```
-- Ardından İmzalı ve Güvenli İmaja geçiş yapın:
+- Ardından imzalı imaja geçiş yapın:
   ```
-  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/yavasdev/bazzite-dx-nvidia_with-tuxedo-drivers:latest
+  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/yavasdev/bazzite-tuxedo:latest
   ```
 - Kurulumu tamamlamak için tekrar yeniden başlatın:
   ```
   systemctl reboot
   ```
 
-`latest` etiketi, belirttiğiniz Fedora sürümü için en yeni ve en kararlı yapıyı otomatik olarak çekecektir.
+Başka bir varyant için yukarıdaki komutlarda `bazzite-tuxedo` yerine `bazzite-dx-nvidia-tuxedo` veya `bazzite-dx-tuxedo` kullanın.
+
+`latest` etiketi, yapılandırılan Fedora sürümü için en yeni imajı gösterir. Tariflerde ayrıca `stable` etiketi de yayımlanır.
 
 ## Doğrulama
 
 Bu imajlar, [Sigstore](https://www.sigstore.dev/)'un [cosign](https://github.com/sigstore/cosign) aracı kullanılarak dijital olarak imzalanmıştır. İmajın orijinalliğini doğrulamak için bu depodan `cosign.pub` dosyasını indirebilir ve aşağıdaki komutu çalıştırabilirsiniz:
 
 ```bash
-cosign verify --key cosign.pub ghcr.io/yavasdev/bazzite-dx-nvidia_with-tuxedo-drivers
+cosign verify --key cosign.pub ghcr.io/yavasdev/bazzite-tuxedo:latest
 ```
 
 ---

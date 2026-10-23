@@ -1,36 +1,72 @@
-#!/bin/bash
-set -oue pipefail
+#!/usr/bin/env bash
+set -euo pipefail
 
 echo "=========================================="
 echo "1. Compiling Tuxedo Drivers from Source"
 echo "=========================================="
 
-# Detect the current kernel version inside the Bazzite image
-KERNEL_VERSION=$(ls /usr/lib/modules | grep -v '.*-.*-.*-.*' | head -n 1)
+# Select the newest installed kernel with matching development files.
+KERNEL_VERSION=$(
+  find /usr/lib/modules -mindepth 1 -maxdepth 1 -type d -printf '%f\n' |
+    sort -V |
+    while read -r version; do
+      if [[ -f "/usr/src/kernels/$version/Makefile" ]]; then
+        printf '%s\n' "$version"
+      fi
+    done |
+    tail -n 1
+)
 
-# Clone the latest source code from Tuxedo's official development repository
+if [[ -z "$KERNEL_VERSION" ]]; then
+  echo "ERROR: Could not find an installed kernel with matching kernel-devel files." >&2
+  exit 1
+fi
+
+KERNEL_BUILD_DIR="/usr/src/kernels/$KERNEL_VERSION"
+echo "Building Tuxedo drivers for kernel $KERNEL_VERSION"
+
+# latest source code from Tuxedo's official development repository
 git clone https://gitlab.com/tuxedocomputers/development/packages/tuxedo-drivers.git /tmp/tuxedo-drivers
+
+# Clone the desired commit (hash) or branch (name) source code from Tuxedo's official development repository
+#TUXEDO_DRIVERS_REF="a929f9ce143316b3b18d5f3fbf9cc54f0c1122e2"
+#git clone \
+#  --branch "$TUXEDO_DRIVERS_REF" \
+#  --depth 1 \
+#  https://gitlab.com/tuxedocomputers/development/packages/tuxedo-drivers.git \
+#  /tmp/tuxedo-drivers
+
 cd /tmp/tuxedo-drivers
 
-# Compile the drivers against the current Bazzite kernel
-make KDIR=/usr/src/kernels/$KERNEL_VERSION
+# Compile the drivers against the selected kernel.
+make KDIR="$KERNEL_BUILD_DIR"
 
-# Install the compiled modules to the system path
-#make KDIR=/usr/src/kernels/$KERNEL_VERSION INSTALL_MOD_PATH=/usr modules_install
-# Update kernel module dependencies
-#depmod -a -b /usr $KERNEL_VERSION
-# |
-# |
-# v
-# INSTALLATION FIX:
-# Instead of relying on Tuxedo's Makefile install targets which fail in offline builds,
-# we manually create the module directory and copy all compiled .ko files directly into it.
+# Install the compiled modules manually because modules_install is unavailable in
+# the BlueBuild environment.
 MODULE_DIR="/usr/lib/modules/$KERNEL_VERSION/extra/tuxedo"
-mkdir -p $MODULE_DIR
-find . -name "*.ko" -exec cp {} $MODULE_DIR/ \;
+mkdir -p "$MODULE_DIR"
 
-# Update kernel module dependencies so the system recognizes the new drivers
-depmod -a -b /usr $KERNEL_VERSION
+mapfile -t MODULES < <(find . -type f -name '*.ko' -print | sort)
+if [[ "${#MODULES[@]}" -eq 0 ]]; then
+  echo "ERROR: Driver build produced no kernel modules." >&2
+  exit 1
+fi
+
+declare -A INSTALLED_MODULES=()
+for module in "${MODULES[@]}"; do
+  module_name=$(basename "$module")
+
+  if [[ -n "${INSTALLED_MODULES[$module_name]:-}" ]]; then
+    echo "ERROR: Duplicate kernel module filename: $module_name" >&2
+    exit 1
+  fi
+
+  cp "$module" "$MODULE_DIR/$module_name"
+  INSTALLED_MODULES["$module_name"]="$module"
+done
+
+# Generate module dependency and alias indexes for the selected kernel.
+depmod -b /usr "$KERNEL_VERSION"
 
 echo "=========================================="
 echo "2. Tuxedo Control Center (TCC) Installation"
