@@ -21,10 +21,10 @@ modules:
   
   # adding rpm-ostree repos
   - type: rpm-ostree
-   repos:
+    repos:
       # tuxedo drivers repo
       - https://copr.fedorainfracloud.org/coprs/darrencocco/tuxedo-drivers-kmod/repo/fedora-%OS_VERSION%/darrencocco-tuxedo-drivers-kmod-fedora-%OS_VERSION%.repo
-   install:
+    install:
       - tuxedo-drivers-kmod
       - tuxedo-control-center
       - android-tools
