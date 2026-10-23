@@ -1,14 +1,13 @@
 ---
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 
-name: bazzite-deck-nvidia-tuxedo
-description: Bazzite Deck Nvidia with Tuxedo drivers and Control Center.
+name: bazzite-deck-tuxedo
+description: Bazzite Deck with Tuxedo drivers and Control Center.
 
 alt-tags:
-  - latest
   - stable
 
-base-image: ghcr.io/ublue-os/bazzite-deck-nvidia
+base-image: ghcr.io/ublue-os/bazzite-deck
 image-version: stable
 
 modules:

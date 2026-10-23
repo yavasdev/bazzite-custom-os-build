@@ -1,14 +1,13 @@
 ---
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 
-name: bazzite-nvidia-tuxedo
-description: Bazzite Nvidia with Tuxedo drivers and Control Center.
+name: bazzite-dx-nvidia-tuxedo
+description: Bazzite DX Nvidia with Tuxedo drivers and Control Center.
 
 alt-tags:
-  - latest
   - stable
 
-base-image: ghcr.io/ublue-os/bazzite-nvidia
+base-image: ghcr.io/ublue-os/bazzite-dx-nvidia
 image-version: stable
 
 modules:
@@ -16,7 +15,7 @@ modules:
     files:
       - source: system
         destination: /
-  
+
   - type: rpm-ostree
     install:
       - git

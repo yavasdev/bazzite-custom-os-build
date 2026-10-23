@@ -1,15 +1,15 @@
 ---
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 
-name: bazzite-gnome-tuxedo
-description: Bazzite Gnome with Tuxedo drivers and Control Center.
+name: bazzite-gdx-tuxedo
+description: Bazzite GDX with Tuxedo drivers and Control Center.
 
 alt-tags:
   - latest
-  - stable
-
-base-image: ghcr.io/ublue-os/bazzite-gnome
-image-version: stable
+  #- stable
+# note: this image is in still testing phase, use it at your own risk. It is not yet considered stable.
+base-image: ghcr.io/ublue-os/bazzite-gdx
+image-version: latest # stable
 
 modules:
   - type: files

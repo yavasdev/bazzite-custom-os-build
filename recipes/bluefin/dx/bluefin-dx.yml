@@ -1,14 +1,13 @@
 ---
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 
-name: bazzite-dx-tuxedo
-description: Bazzite DX with Tuxedo drivers and Control Center.
+name: bluefin-dx-tuxedo
+description: Bluefin DX with Tuxedo drivers and Control Center.
 
 alt-tags:
-  - latest
   - stable
 
-base-image: ghcr.io/ublue-os/bazzite-dx
+base-image: ghcr.io/ublue-os/bluefin-dx
 image-version: stable
 
 modules:
