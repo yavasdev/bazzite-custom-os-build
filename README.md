@@ -1,4 +1,4 @@
-# Bazzite Linux Builds with Tuxedo Edition &nbsp;
+# Bazzite Linux Builds with Tuxedo Drivers and Apps &nbsp;
 [![bazzite-dx-nvidia](https://github.com/yavasdev/bazzite-dx-nvidia-tuxedo/actions/workflows/bazzite-dx-nvidia.yml/badge.svg?branch=main)](https://github.com/yavasdev/bazzite-dx-nvidia-tuxedo/actions/workflows/bazzite-dx-nvidia.yml)
 
 
