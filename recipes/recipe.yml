@@ -4,7 +4,8 @@
 name: bazzite-dx-nvidia_with-tuxedo-drivers
 # Add alt tags alongside the latest tag
 alt-tags:
-  - stable-44
+  - latest
+  - stable
 # description will be included in the image's metadata
 description: Custom Bazzite DX Nvidia with Tuxedo Drivers.
 
