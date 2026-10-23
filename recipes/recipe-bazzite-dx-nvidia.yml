@@ -45,24 +45,3 @@ modules:
 
   # this sets up the proper policy & signing files for signed images to work fully
   - type: signing
-
-# example flatpak command for later use.
-#  # protects the bazzite's default flatpak settings
-#  - type: default-flatpaks
-
-# example dnf commands for later use.
-#  - type: dnf
-#    repos:
-#      copr:
-#        - atim/starship
-#    install:
-#      packages:
-#        - micro
-#        - starship
-#    remove:
-#      packages:
-#        # example: removing firefox (in favor of the flatpak)
-#        # "firefox" is the main package, "firefox-langpacks" is a dependency
-#        - firefox
-#        # also remove firefox dependency (not required for all packages, this is a special case)
-#        - firefox-langpacks 
