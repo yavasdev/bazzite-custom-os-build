@@ -41,8 +41,20 @@ echo "=========================================="
 mkdir -p /tmp/tcc
 cd /tmp/tcc
 
-# Download the latest RPM from Tuxedo's repo (Update version here when needed)
-wget https://rpm.tuxedocomputers.com/fedora/44/x86_64/base/tuxedo-control-center-3.1.1-1.x86_64.rpm -O tcc.rpm
+# BASE URL for Tuxedo Fedora 44 repository
+BASE_URL="https://rpm.tuxedocomputers.com/fedora/44/x86_64/base"
+
+# Dynamically scrape the directory index, sort versions, and get the latest RPM filename
+LATEST_RPM=$(curl -s "$BASE_URL/" | grep -o 'href="tuxedo-control-center[^"]*\.rpm"' | cut -d'"' -f2 | sort -V | tail -n 1)
+
+# Fail safe check
+if [ -z "$LATEST_RPM" ]; then
+    echo "ERROR: Could not find tuxedo-control-center RPM on the server."
+    exit 1
+fi
+
+echo "Found latest version: $LATEST_RPM"
+wget "$BASE_URL/$LATEST_RPM" -O tcc.rpm
 
 # Extract the RPM package
 rpm2cpio tcc.rpm | cpio -idmv
