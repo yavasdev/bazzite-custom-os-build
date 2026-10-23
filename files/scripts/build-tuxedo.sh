@@ -5,24 +5,19 @@ echo "=========================================="
 echo "1. Compiling Tuxedo Drivers from Source"
 echo "=========================================="
 
-# Select the newest installed kernel with matching development files.
-KERNEL_VERSION=$(
-  find /usr/lib/modules -mindepth 1 -maxdepth 1 -type d -printf '%f\n' |
-    sort -V |
-    while read -r version; do
-      if [[ -f "/usr/src/kernels/$version/Makefile" ]]; then
-        printf '%s\n' "$version"
-      fi
-    done |
-    tail -n 1
+# Select the newest kernel development tree available in the build container.
+KERNEL_BUILD_DIR=$(
+  find /usr/src/kernels -mindepth 1 -maxdepth 1 -type d \
+    -exec test -f '{}/Makefile' \; \
+    -print | sort -V | tail -n 1
 )
 
-if [[ -z "$KERNEL_VERSION" ]]; then
-  echo "ERROR: Could not find an installed kernel with matching kernel-devel files." >&2
+if [[ -z "$KERNEL_BUILD_DIR" ]]; then
+  echo "ERROR: Could not find a kernel-devel build tree." >&2
   exit 1
 fi
 
-KERNEL_BUILD_DIR="/usr/src/kernels/$KERNEL_VERSION"
+KERNEL_VERSION=$(basename "$KERNEL_BUILD_DIR")
 echo "Building Tuxedo drivers for kernel $KERNEL_VERSION"
 
 # latest source code from Tuxedo's official development repository

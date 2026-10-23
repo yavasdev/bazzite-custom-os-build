@@ -16,17 +16,17 @@ modules:
       - source: system
         destination: /
 
-  - type: rpm-ostree
+  - type: dnf
     install:
-      - git
-      - make
-      - gcc
-      - kmod
-      - curl
-      - wget
-      - cpio
-      - kernel-devel
-      - kernel-devel-matched
+      packages:
+        - git
+        - make
+        - gcc
+        - kmod
+        - curl
+        - wget
+        - cpio
+        - kernel-devel
 
   - type: script
     scripts:
