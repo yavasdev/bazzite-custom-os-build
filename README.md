@@ -1,5 +1,4 @@
-# Bazzite DX Nvidia (Tuxedo Edition) &nbsp; [![build badge](https://github.com/yavasdev/bazzite-custom-os-build/actions/workflows/build.yml/badge.svg)](https://github.com/yavasdev/bazzite-custom-os-build/actions/workflows/build.yml)
-
+# Bazzite DX Nvidia (Tuxedo Edition) &nbsp; [![build badge](https://github.com/yavasdev/bazzite-dx-nvidia-tuxedo/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/yavasdev/bazzite-dx-nvidia-tuxedo/actions/workflows/build.yml)
 [🇺🇸 English](README.md) | [🇹🇷 Türkçe](docs/README-TR.md)
 
 This repository builds a custom **Atomic (Immutable) Linux** operating system image based with tuxedo drivers and apps on Bazzite DX Nvidia ([github](https://github.com/ublue-os/bazzite-dx) / [image](https://ghcr.io/ublue-os/bazzite-dx-nvidia)), specifically tailored for Tuxedo or other Clevo laptops.
