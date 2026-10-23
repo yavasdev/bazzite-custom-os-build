@@ -2,7 +2,7 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 # image will be published to ghcr.io/<user>/<name>
 name: bazzite-dx-nvidia_with-tuxedo-drivers
-# Add alt tags alongside the latest tag.
+# Add alt tags alongside the latest tag
 alt-tags:
   - stable-44
 # description will be included in the image's metadata
@@ -25,24 +25,28 @@ modules:
   # adding rpm-ostree repos
   - type: rpm-ostree
     repos:
-      # tuxedo drivers repo
-      - https://copr.fedorainfracloud.org/coprs/darrencocco/tuxedo-drivers-kmod/repo/fedora-44/darrencocco-tuxedo-drivers-kmod-fedora-44.repo
-      - https://raw.githubusercontent.com/yavasdev/bazzite-custom-os-build/main/files/system/etc/yum.repos.d/tuxedo.repo
-      # Waydroid Helper reposu (cuteneko)
+      # Waydroid Helper repo (cuteneko)
       - https://copr.fedorainfracloud.org/coprs/cuteneko/waydroid-helper/repo/fedora-44/cuteneko-waydroid-helper-fedora-44.repo
     install:
-      - tuxedo-drivers-kmod
-      - tuxedo-control-center
-      - android-tools
-      - protobuf
       - waydroid-helper
+      - android-tools
+      # building tools
+      - git
+      - make
+      - gcc
+      - kmod
+
+  # bash script for setting up.
+  - type: script
+    scripts:
+      - build-tuxedo.sh
 
   - type: systemd
     system:
       enabled:
-        - tuxedotccd.service
+        - tccd.service
 
-  # protects the bazzite's default flatpak settings.
+  # protects the bazzite's default flatpak settings
   - type: default-flatpaks
   # this sets up the proper policy & signing files for signed images to work fully
   - type: signing
