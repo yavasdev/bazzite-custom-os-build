@@ -30,7 +30,7 @@ jobs:
       matrix:
         recipe:
           # !! Add your recipes here
-          - recipe.yml
+          - recipe-bazzite-dx-nvidia.yml
     steps:
       # the build is fully handled by the reusable github action
       - name: Build bazzite-dx-nvidia-tuxedo Image
