@@ -1,4 +1,4 @@
-# Bazzite DX Nvidia (Tuxedo Edition) &nbsp; 
+# Bazzite Linux Builds with Tuxedo Edition &nbsp;
 [![bazzite-dx-nvidia](https://github.com/yavasdev/bazzite-dx-nvidia-tuxedo/actions/workflows/bazzite-dx-nvidia.yml/badge.svg?branch=main)](https://github.com/yavasdev/bazzite-dx-nvidia-tuxedo/actions/workflows/bazzite-dx-nvidia.yml)
 
 
@@ -18,6 +18,9 @@ The following features are integrated natively on top of the original Bazzite im
 
 > [!WARNING]  
 > This process will replace your current Atomic Fedora / Bazzite operating system image. Make sure your current OS is an Nvidia variant before proceeding.
+
+> [!WARNING]  
+> I didn't test it currently, just writing right now, try at your own discreation.
 
 To rebase an existing atomic Fedora installation to the latest build:
 
