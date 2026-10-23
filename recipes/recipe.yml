@@ -47,7 +47,7 @@ modules:
         - tccd.service
 
   # protects the bazzite's default flatpak settings
-  - type: default-flatpaks
+  #- type: default-flatpaks
   # this sets up the proper policy & signing files for signed images to work fully
   - type: signing
 
