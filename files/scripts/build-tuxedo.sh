@@ -98,7 +98,7 @@ if [ -z "$LATEST_RPM" ]; then
 fi
 
 echo "Found latest version: $LATEST_RPM"
-wget "$BASE_URL/$LATEST_RPM" -O tcc.rpm
+curl -fL "$BASE_URL/$LATEST_RPM" -o tcc.rpm
 
 # Extract the RPM package
 rpm2cpio tcc.rpm | cpio -idmv
@@ -117,6 +117,27 @@ fi
 
 if [ -d "usr/lib/systemd/system" ]; then
     cp -r usr/lib/systemd/system/* /usr/lib/systemd/system/
+fi
+
+# Keep the recipe's stable service name compatible with TCC package versions.
+SERVICE_UNIT=""
+for candidate in \
+    /usr/lib/systemd/system/tccd.service \
+    /usr/lib/systemd/system/tuxedo-control-center.service \
+    /usr/lib/systemd/system/tuxedo-control-center*.service; do
+    if [[ -f "$candidate" ]]; then
+        SERVICE_UNIT="$candidate"
+        break
+    fi
+done
+
+if [[ -z "$SERVICE_UNIT" ]]; then
+    echo "ERROR: Tuxedo Control Center systemd unit was not found in the RPM." >&2
+    exit 1
+fi
+
+if [[ "$(basename "$SERVICE_UNIT")" != "tccd.service" ]]; then
+    ln -sf "$(basename "$SERVICE_UNIT")" /usr/lib/systemd/system/tccd.service
 fi
 
 if [ -d "usr/share" ]; then
