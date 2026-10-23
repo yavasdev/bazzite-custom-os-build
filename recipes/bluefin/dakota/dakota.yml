@@ -8,7 +8,7 @@ description: Dakota (Bluefin) with Tuxedo drivers and Control Center.
 alt-tags:
   - stable
 
-base-image: ghcr.io/projectbluefin/dakota:stable
+base-image: ghcr.io/projectbluefin/dakota
 image-version: stable
 
 modules:
