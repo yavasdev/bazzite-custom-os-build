@@ -16,11 +16,19 @@ cd /tmp/tuxedo-drivers
 make KDIR=/usr/src/kernels/$KERNEL_VERSION
 
 # Install the compiled modules to the system path
-make KDIR=/usr/src/kernels/$KERNEL_VERSION INSTALL_MOD_PATH=/usr modules_install
-
+#make KDIR=/usr/src/kernels/$KERNEL_VERSION INSTALL_MOD_PATH=/usr modules_install
 # Update kernel module dependencies
-depmod -a -b /usr $KERNEL_VERSION
+#depmod -a -b /usr $KERNEL_VERSION
 
+# INSTALLATION FIX:
+# Instead of relying on Tuxedo's Makefile install targets which fail in offline builds,
+# we manually create the module directory and copy all compiled .ko files directly into it.
+MODULE_DIR="/usr/lib/modules/$KERNEL_VERSION/extra/tuxedo"
+mkdir -p $MODULE_DIR
+find . -name "*.ko" -exec cp {} $MODULE_DIR/ \;
+
+# Update kernel module dependencies so the system recognizes the new drivers
+depmod -a -b /usr $KERNEL_VERSION
 
 echo "=========================================="
 echo "2. Tuxedo Control Center (TCC) Installation"
