@@ -12,7 +12,7 @@ description: Bazzite DX Nvidia with Tuxedo Drivers.
 # the base image to build on top of (FROM) and the version tag to use
 base-image: ghcr.io/ublue-os/bazzite-dx-nvidia
 # You can pin to a specific version of Fedora as well
-image-version: stable-44 
+image-version: stable
 
 # module configuration, executed in order
 # you can include multiple instances of the same module
@@ -37,15 +37,18 @@ modules:
     scripts:
       - build-tuxedo.sh
 
+  # for enabling tuxedo control center
   - type: systemd
     system:
       enabled:
         - tccd.service
 
-  # protects the bazzite's default flatpak settings
-  #- type: default-flatpaks
   # this sets up the proper policy & signing files for signed images to work fully
   - type: signing
+
+# example flatpak command for later use.
+#  # protects the bazzite's default flatpak settings
+#  - type: default-flatpaks
 
 # example dnf commands for later use.
 #  - type: dnf
