@@ -34,7 +34,7 @@ jobs:
 
   bluebuild:
     needs: recipes
-    name: Build Bazzite Tuxedo Images
+    name: Build Bazzite Tuxedo Images - bluebuild
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -42,10 +42,11 @@ jobs:
       id-token: write
     strategy:
       fail-fast: false # stop GH from cancelling all matrix builds if one fails
+      # use the matrix output from the previous job to build all recipes in parallel
       matrix: ${{ fromJSON(needs.recipes.outputs.matrix) }}
     steps:
       # the build is fully handled by the reusable github action
-      - name: Build Custom Image
+      - name: Build Custom Image - steps
         uses: blue-build/github-action@v1.13
         with:
           recipe: ${{ matrix.recipe }}
