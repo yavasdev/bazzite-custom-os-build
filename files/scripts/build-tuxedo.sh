@@ -19,7 +19,9 @@ make KDIR=/usr/src/kernels/$KERNEL_VERSION
 #make KDIR=/usr/src/kernels/$KERNEL_VERSION INSTALL_MOD_PATH=/usr modules_install
 # Update kernel module dependencies
 #depmod -a -b /usr $KERNEL_VERSION
-
+# |
+# |
+# v
 # INSTALLATION FIX:
 # Instead of relying on Tuxedo's Makefile install targets which fail in offline builds,
 # we manually create the module directory and copy all compiled .ko files directly into it.
