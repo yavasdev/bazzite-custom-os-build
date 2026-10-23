@@ -1,4 +1,4 @@
-name: bazzite-dx-nvidia
+name: bluebuild
 on:
   schedule:
     - cron:
@@ -19,7 +19,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   bluebuild:
-    name: Build bazzite-dx-nvidia-tuxedo Image
+    name: Build bazzite Images
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -31,9 +31,10 @@ jobs:
         recipe:
           # !! Add your recipes here
           - recipe-bazzite-dx-nvidia.yml
+          - recipe-bazzite-dx.yml
     steps:
       # the build is fully handled by the reusable github action
-      - name: Build bazzite-dx-nvidia-tuxedo Image
+      - name: Build Custom Image
         uses: blue-build/github-action@v1.13
         with:
           recipe: ${{ matrix.recipe }}
