@@ -43,8 +43,19 @@ echo "=========================================="
 mkdir -p /tmp/tcc
 cd /tmp/tcc
 
-# BASE URL for Tuxedo Fedora 44 repository
-BASE_URL="https://rpm.tuxedocomputers.com/fedora/44/x86_64/base"
+# Dynamically get the current Fedora/Bazzite major version
+FEDORA_VERSION=$(source /etc/os-release && echo $VERSION_ID)
+#FEDORA_VERSION=$(rpm -E %fedora)
+echo "Found fedora version: $FEDORA_VERSION"
+
+# Fail safe check
+if [ -z "$FEDORA_VERSION" ]; then
+    echo "ERROR: Could not find FEDORA_VERSION on the server."
+    exit 1
+fi
+
+# BASE URL for Tuxedo Fedora repository using the dynamic version
+BASE_URL="https://rpm.tuxedocomputers.com/fedora/${FEDORA_VERSION}/x86_64/base"
 
 # Dynamically scrape the directory index, sort versions, and get the latest RPM filename
 LATEST_RPM=$(curl -s "$BASE_URL/" | grep -o 'href="tuxedo-control-center[^"]*\.rpm"' | cut -d'"' -f2 | sort -V | tail -n 1)
