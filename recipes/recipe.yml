@@ -1,7 +1,7 @@
 ---
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 # image will be published to ghcr.io/<user>/<name>
-name: bazzite-dx-nvidia_with-tuxedo-drivers
+name: bazzite-dx-nvidia_with-tuxedo-drivers:stable-44
 # description will be included in the image's metadata
 description: Custom Bazzite DX Nvidia with Tuxedo Drivers.
 
@@ -23,7 +23,7 @@ modules:
   - type: rpm-ostree
     repos:
       # tuxedo drivers repo
-      - https://copr.fedorainfracloud.org/coprs/darrencocco/tuxedo-drivers-kmod/repo/fedora-%OS_VERSION%/darrencocco-tuxedo-drivers-kmod-fedora-%OS_VERSION%.repo
+      - https://copr.fedorainfracloud.org/coprs/darrencocco/tuxedo-drivers-kmod/repo/fedora-44/darrencocco-tuxedo-drivers-kmod-fedora-44.repo
     install:
       - tuxedo-drivers-kmod
       - tuxedo-control-center
