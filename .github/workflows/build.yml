@@ -30,8 +30,8 @@ jobs:
       matrix:
         recipe:
           # !! Add your recipes here
-          - recipe-bazzite-dx-nvidia.yml
-          - recipe-bazzite-dx.yml
+          - bazzite-dx-nvidia.yml
+          - bazzite-dx.yml
     steps:
       # the build is fully handled by the reusable github action
       - name: Build Custom Image
