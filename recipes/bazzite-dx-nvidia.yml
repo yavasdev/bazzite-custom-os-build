@@ -25,7 +25,6 @@ modules:
       - kmod
       - curl
       - wget
-      - rpm2cpio
       - cpio
       - kernel-devel
       - kernel-devel-matched
