@@ -18,7 +18,22 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
   cancel-in-progress: true
 jobs:
+  recipes:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      matrix: ${{ steps.find-recipes.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: find-recipes
+        run: |
+          recipes=$(find recipes -maxdepth 1 -type f ! -name 'recipe-example.yml' -printf '%f\n' | sort | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          echo "matrix={\"recipe\":$recipes}" >> "$GITHUB_OUTPUT"
+
   bluebuild:
+    needs: recipes
     name: Build Bazzite Tuxedo Images
     runs-on: ubuntu-latest
     permissions:
@@ -27,11 +42,7 @@ jobs:
       id-token: write
     strategy:
       fail-fast: false # stop GH from cancelling all matrix builds if one fails
-      matrix:
-        recipe:
-          # !! Add your recipes here
-          - bazzite-dx-nvidia.yml
-          - bazzite-dx.yml
+      matrix: ${{ fromJSON(needs.recipes.outputs.matrix) }}
     steps:
       # the build is fully handled by the reusable github action
       - name: Build Custom Image

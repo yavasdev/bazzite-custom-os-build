@@ -1,32 +1,24 @@
 ---
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
-# image will be published to ghcr.io/<user>/<name>
+
 name: bazzite-dx-tuxedo
-# Add alt tags alongside the latest tag
+description: Bazzite DX with Tuxedo drivers and Control Center.
+
 alt-tags:
   - latest
   - stable
-# description will be included in the image's metadata
-description: Bazzite DX with Tuxedo Drivers.
 
-# the base image to build on top of (FROM) and the version tag to use
 base-image: ghcr.io/ublue-os/bazzite-dx
-# You can pin to a specific version of Fedora as well
 image-version: stable
 
-# module configuration, executed in order
-# you can include multiple instances of the same module
 modules:
   - type: files
     files:
       - source: system
-        # copies files/system/* (* means everything inside it) into your image's root folder /
         destination: /
   
-  # adding rpm-ostree repos
   - type: rpm-ostree
     install:
-      # building tools
       - git
       - make
       - gcc
@@ -37,16 +29,13 @@ modules:
       - kernel-devel
       - kernel-devel-matched
 
-  # bash script for setting up.
   - type: script
     scripts:
       - build-tuxedo.sh
 
-  # for enabling tuxedo control center
   - type: systemd
     system:
       enabled:
         - tccd.service
 
-  # this sets up the proper policy & signing files for signed images to work fully
   - type: signing
