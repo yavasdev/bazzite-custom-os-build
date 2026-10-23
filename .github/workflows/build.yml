@@ -34,7 +34,7 @@ jobs:
 
   bluebuild:
     needs: recipes
-    name: Build Bazzite Tuxedo Images - bluebuild
+    name: bluebuild
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -46,7 +46,7 @@ jobs:
       matrix: ${{ fromJSON(needs.recipes.outputs.matrix) }}
     steps:
       # the build is fully handled by the reusable github action
-      - name: Build Custom Image - steps
+      - name: steps
         uses: blue-build/github-action@v1.13
         with:
           recipe: ${{ matrix.recipe }}
