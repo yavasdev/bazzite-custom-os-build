@@ -60,11 +60,25 @@ wget "$BASE_URL/$LATEST_RPM" -O tcc.rpm
 rpm2cpio tcc.rpm | cpio -idmv
 
 # Distribute the extracted files into the actual system directories
-cp -r opt/tuxedo-control-center /opt/
-cp -r usr/bin/* /usr/bin/
-cp -r usr/lib/systemd/system/* /usr/lib/systemd/system/
-cp -r usr/share/* /usr/share/
-cp -r etc/* /etc/
+# We use 'if [ -d ... ]' to check if the directory actually exists in the RPM 
+# before trying to copy it. This prevents the script from crashing.
 
-# Cleanup temporary files
-rm -rf /tmp/tuxedo-drivers /tmp/tcc
+if [ -d "opt/tuxedo-control-center" ]; then
+    cp -r opt/tuxedo-control-center /opt/
+fi
+
+if [ -d "usr/bin" ]; then
+    cp -r usr/bin/* /usr/bin/
+fi
+
+if [ -d "usr/lib/systemd/system" ]; then
+    cp -r usr/lib/systemd/system/* /usr/lib/systemd/system/
+fi
+
+if [ -d "usr/share" ]; then
+    cp -r usr/share/* /usr/share/
+fi
+
+if [ -d "etc" ]; then
+    cp -r etc/* /etc/
+fi
