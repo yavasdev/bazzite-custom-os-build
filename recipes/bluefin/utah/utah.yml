@@ -8,7 +8,7 @@ alt-tags:
   #- stable
   - testing
 
-base-image: ghcr.io/projectbluefin/utah:testing
+base-image: ghcr.io/projectbluefin/utah
 image-version: testing #stable
 
 modules:
