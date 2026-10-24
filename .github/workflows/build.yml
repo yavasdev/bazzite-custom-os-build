@@ -74,6 +74,7 @@ jobs:
           test "$BLUEBUILD_RESULT" = "success"
 
   dependabot:
+    name: dependabot auto-merge
     needs: build-success
     permissions:
       contents: write
