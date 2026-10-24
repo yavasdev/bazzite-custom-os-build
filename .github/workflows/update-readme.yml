@@ -1,59 +1,41 @@
 name: Update README Badges
 
-# Bu workflow ne zaman çalışacak?
+# When will this workflow run?
 on:
   push:
     paths:
-      - 'README.template.md' # Sadece şablon değiştiğinde çalışsın
-      #- 'README-TR.template.md' # Sadece şablon değiştiğinde çalışsın
-      - '.github/workflows/update-readme.yml' # Veya bu scriptin kendisi değiştiğinde
-  workflow_dispatch: # GitHub arayüzünden elle tetikleyebilmen için
+      - 'README.template.md'
+      - 'docs/README-TR.template.md'
+      - '.github/workflows/update-readme.yml'
+  workflow_dispatch: # Allows manual triggering from the GitHub Actions UI
 
 jobs:
   update-readme:
     name: Generate and Push README
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Repoya push yapabilmek için yazma izni
+      contents: write # Write permission required to push to the repo
     
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      - name: Generate README from template
+      - name: Generate READMEs from templates
+        run: bash files/scripts/generate-readmes.sh
+
+      - name: Commit and push READMEs
         run: |
-          if [ ! -f README.template.md ]; then
-            echo "Hata: README.template.md bulunamadı!"
-            exit 1
-          fi
-
-          # 1. Değişkenleri tanımla
-          BADGE_URL="https://ghcr-badge.egpl.dev/yavasdev"
-          BADGE_PARAMS="tags?label=release&ignore=*-*-*,sha256-*,stable,latest,testing&n=3"
-
-          # 2. sed'in kafasının karışmaması için & işaretlerinin önüne ters taksim (\) ekle
-          ESCAPED_PARAMS="${BADGE_PARAMS//&/\\&}"
-
-          # 3. sed komutuna temizlenmiş değişkeni ($ESCAPED_PARAMS) ver
-          sed -e "s|{{BADGE_URL}}|$BADGE_URL|g" \
-              -e "s|{{BADGE_PARAMS}}|$ESCAPED_PARAMS|g" \
-              README.template.md > README.md
-
-      - name: Commit and push README
-        run: |
-          # 1. Önce dosyayı Git'in sahnesine (staging) ekle ki dosyanın varlığından haberdar olsun
-          git add README.md
+          # Add both generated files to the Git staging area
+          git add README.md docs/README-TR.md
           
-          # 2. Şimdi "eklenen dosyalar (--staged)" içinde bir fark/yenilik var mı diye kontrol et
+          # Check if there are any actual changes
           if git diff --staged --quiet; then
-            echo "README.md'de değişiklik yok, commit atlanıyor."
+            echo "No changes detected, skipping commit."
             exit 0
           fi
           
-          # 3. Değişiklik veya yeni dosya varsa bot ayarlarını yap ve commit at
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "docs: generate README with updated badge URLs"
+          git commit -m "docs: generate README and README-TR with updated variables"
           
-          # 4. Değişiklikleri mevcut branch'e gönder
           git push origin "HEAD:${GITHUB_REF_NAME}"
