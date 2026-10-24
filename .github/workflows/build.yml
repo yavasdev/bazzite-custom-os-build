@@ -81,7 +81,7 @@ jobs:
 
   update-image-badges:
     name: update image badges
-    if: github.event_name != 'pull_request'
+#    if: github.event_name != 'pull_request'
     needs: build-success
     runs-on: ubuntu-latest
     permissions:
