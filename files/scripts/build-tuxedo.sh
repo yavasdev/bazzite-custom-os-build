@@ -111,6 +111,15 @@ if [ -d "opt/tuxedo-control-center" ]; then
     cp -r opt/tuxedo-control-center /opt/
 fi
 
+TCC_SERVICE_DIR="opt/tuxedo-control-center/resources/dist/tuxedo-control-center/data/dist-data"
+if [[ -d "$TCC_SERVICE_DIR" ]]; then
+    while IFS= read -r service_file; do
+        service_name=$(basename "$service_file")
+        ln -sfn "/opt/tuxedo-control-center/resources/dist/tuxedo-control-center/data/dist-data/$service_name" \
+            "/usr/lib/systemd/system/$service_name"
+    done < <(find "$TCC_SERVICE_DIR" -type f -name '*.service' -print)
+fi
+
 if [ -d "usr/bin" ]; then
     cp -r usr/bin/* /usr/bin/
 fi
