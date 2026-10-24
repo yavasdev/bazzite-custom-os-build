@@ -27,8 +27,10 @@ jobs:
 
       - name: add generated files to git
         run: |
-          # Add both generated files to the Git staging area
-          git add README.md docs/README-TR.md
+          # Add generated files to the Git staging area
+          echo "Adding generated README files to git..."
+          git add README.md docs/README-TR.md 
+          echo "Files added to git staging area."
         
       - name: Commit and push changes
         run: |
