@@ -31,6 +31,29 @@ if [[ -z "$KERNEL_BUILD_DIR" ]]; then
     exit 1
   fi
 
+  FEDORA_VERSION=$(printf '%s\n' "$KERNEL_VERSION" | sed -nE 's/.*\.fc([0-9]+)\..*/\1/p')
+  if [[ -z "$FEDORA_VERSION" ]]; then
+    echo "ERROR: Could not determine Fedora release from kernel $KERNEL_VERSION." >&2
+    exit 1
+  fi
+
+  KERNEL_BUILD_REPO="/etc/yum.repos.d/tuxedo-kernel-build.repo"
+  cat > "$KERNEL_BUILD_REPO" <<EOF
+[tuxedo-fedora]
+name=Fedora ${FEDORA_VERSION} - \$basearch
+baseurl=https://dl.fedoraproject.org/pub/fedora/linux/releases/${FEDORA_VERSION}/Everything/\$basearch/os/
+enabled=1
+gpgcheck=1
+gpgkey=https://src.fedoraproject.org/rpms/fedora-repos/raw/rawhide/f/RPM-GPG-KEY-fedora-${FEDORA_VERSION}-primary
+
+[tuxedo-fedora-updates]
+name=Fedora ${FEDORA_VERSION} - \$basearch - Updates
+baseurl=https://dl.fedoraproject.org/pub/fedora/linux/updates/${FEDORA_VERSION}/Everything/\$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=https://src.fedoraproject.org/rpms/fedora-repos/raw/rawhide/f/RPM-GPG-KEY-fedora-${FEDORA_VERSION}-primary
+EOF
+
   if ! "$DNF" -y install "kernel-devel-$KERNEL_VERSION"; then
     KERNEL_NEVR="${KERNEL_VERSION%.*}"
     KERNEL_ARCH="${KERNEL_VERSION##*.}"
@@ -41,7 +64,7 @@ if [[ -z "$KERNEL_BUILD_DIR" ]]; then
     echo "Exact kernel-devel package was not available in enabled repos; downloading:"
     echo "$KOJI_URL"
     curl --fail --location --retry 3 --retry-all-errors "$KOJI_URL" -o /tmp/kernel-devel.rpm
-    "$DNF" -y install /tmp/kernel-devel.rpm
+    "$DNF" -y install bison flex /tmp/kernel-devel.rpm
     rm -f /tmp/kernel-devel.rpm
   fi
 
@@ -49,6 +72,7 @@ if [[ -z "$KERNEL_BUILD_DIR" ]]; then
   if [[ ! -f "$KERNEL_BUILD_DIR/Makefile" ]]; then
     KERNEL_BUILD_DIR="/usr/src/kernels/$KERNEL_VERSION"
   fi
+  rm -f "$KERNEL_BUILD_REPO"
 fi
 
 if [[ ! -f "$KERNEL_BUILD_DIR/Makefile" ]]; then
