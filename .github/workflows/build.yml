@@ -9,16 +9,12 @@ on:
       - main
     paths-ignore: # don't rebuild if only documentation and workflows have changed
       - "**.md"
-      - "docs/**.md"
-      - "docs/tests/**/*"
-      - "badges/**"
+      - "docs/**"
 
   pull_request:
     paths-ignore: # don't rebuild if only documentation has changed
       - "**.md"
-      - "docs/**.md"
-      - "docs/tests/**/*"
-      - "badges/**"
+      - "docs/**"
   workflow_dispatch: # allow manually triggering builds
 
 concurrency:
@@ -27,6 +23,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   recipes:
+    name: create-recipe-matrix
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -34,7 +31,6 @@ jobs:
       matrix: ${{ steps.find-recipes.outputs.matrix }}
     steps:
       - uses: actions/checkout@v5
-
       - id: find-recipes
         run: |
           recipes=$(find recipes -maxdepth 3 -type f -name '*.yml' ! -name 'recipe-example.yml' ! -empty -printf '%P\n' | sort | jq -R -s -c 'split("\n") | map(select(length > 0))')
@@ -80,37 +76,6 @@ jobs:
         run: |
           test "$RECIPES_RESULT" = "success"
           test "$BLUEBUILD_RESULT" = "success"
-
-  update-image-badges:
-    name: update image badges
-    needs: build-success
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      packages: read
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
-
-      - name: Generate image version badges
-        run: bash files/scripts/get_badges.sh
-        env:
-          GH_TOKEN: ${{ github.token }}
-          BADGE_BRANCH: ${{ github.head_ref || github.ref_name }}
-          BADGE_REPOSITORY: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
-
-      - name: Commit image badges
-        if: github.event_name != 'pull_request'
-        run: |
-          if git diff --quiet -- badges; then
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add badges
-          git commit -m "docs: update image version badges"
-          git push origin "HEAD:${GITHUB_REF_NAME}"
 
   dependabot:
     name: dependabot auto-merge

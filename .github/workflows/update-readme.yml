@@ -1,0 +1,54 @@
+name: Update README Badges
+
+# Bu workflow ne zaman çalışacak?
+on:
+  push:
+    paths:
+      - 'README.template.md' # Sadece şablon değiştiğinde çalışsın
+      #- 'README-TR.template.md' # Sadece şablon değiştiğinde çalışsın
+      - '.github/workflows/update-readme.yml' # Veya bu scriptin kendisi değiştiğinde
+  workflow_dispatch: # GitHub arayüzünden elle tetikleyebilmen için
+
+jobs:
+  update-readme:
+    name: Generate and Push README
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Repoya push yapabilmek için yazma izni
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Generate README from template
+        run: |
+          if [ ! -f README.template.md ]; then
+            echo "Hata: README.template.md bulunamadı!"
+            exit 1
+          fi
+
+          # 1. Değişkenleri tanımla
+          BASE_URL="https://ghcr-badge.egpl.dev/yavasdev"
+          PARAMS="tags?label=release&ignore=*-*-*,sha256-*,stable,latest,testing&n=3"
+
+          # 2. sed ile yer tutucuları değiştir ve README.md'yi oluştur
+          sed -e "s|{{BASE_URL}}|$BASE_URL|g" \
+              -e "s|{{PARAMS}}|$PARAMS|g" \
+              README.template.md > README.md
+
+      - name: Commit and push README
+        run: |
+          # Değişiklik yoksa işlemi sessizce bitir
+          if git diff --quiet -- README.md; then
+            echo "README.md'de değişiklik yok, commit atlanıyor."
+            exit 0
+          fi
+          
+          # GitHub Actions botu olarak commit at
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "docs: generate README with updated badge URLs"
+          
+          # Değişiklikleri mevcut branch'e gönder
+          git push origin "HEAD:${GITHUB_REF_NAME}"
