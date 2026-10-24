@@ -27,13 +27,16 @@ jobs:
             exit 1
           fi
 
-          # 1. Değişkenleri tanımla (Senin şablonuna göre isimlendirildi)
+          # 1. Değişkenleri tanımla
           BADGE_URL="https://ghcr-badge.egpl.dev/yavasdev"
           BADGE_PARAMS="tags?label=release&ignore=*-*-*,sha256-*,stable,latest,testing&n=3"
 
-          # 2. sed ile yer tutucuları değiştir ve README.md'yi oluştur
+          # 2. sed'in kafasının karışmaması için & işaretlerinin önüne ters taksim (\) ekle
+          ESCAPED_PARAMS="${BADGE_PARAMS//&/\\&}"
+
+          # 3. sed komutuna temizlenmiş değişkeni ($ESCAPED_PARAMS) ver
           sed -e "s|{{BADGE_URL}}|$BADGE_URL|g" \
-              -e "s|{{BADGE_PARAMS}}|$BADGE_PARAMS|g" \
+              -e "s|{{BADGE_PARAMS}}|$ESCAPED_PARAMS|g" \
               README.template.md > README.md
 
       - name: Commit and push README
