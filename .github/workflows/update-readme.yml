@@ -7,6 +7,8 @@ on:
       - 'README.template.md'
       - 'docs/README-TR.template.md'
       - '.github/workflows/update-readme.yml'
+      - 'files/scripts/generate-readmes.sh'
+      - 'files/scripts/git-check-and-push.sh'
   workflow_dispatch: # Allows manual triggering from the GitHub Actions UI
 
 jobs:
