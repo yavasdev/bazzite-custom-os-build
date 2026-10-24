@@ -83,6 +83,43 @@ Project Bluefin Dakota is not currently compatible with these BlueBuild
 recipes. Dakota is assembled with BuildStream rather than the DNF
 package-management model used here.
 
+## Human-tested distributions
+
+The following table tracks variants that have been installed and used on
+physical hardware. A successful CI build does not count as a human test.
+
+| Distribution | Variant | Test status |
+| --- | --- | --- |
+| [Bazzite](https://bazzite.gg/) | Bazzite KDE | Not tested yet |
+| [Bazzite](https://bazzite.gg/) | Bazzite GNOME | Not tested yet |
+| [Bazzite](https://bazzite.gg/) | Bazzite NVIDIA | Not tested yet |
+| [Bazzite](https://bazzite.gg/) | Bazzite GNOME NVIDIA | Not tested yet |
+| [Bazzite](https://bazzite.gg/) | Bazzite DX KDE | Not tested yet |
+| [Bazzite](https://bazzite.gg/) | Bazzite DX GNOME | Not tested yet |
+| [Bazzite](https://bazzite.gg/) | **Bazzite DX NVIDIA** | **Human tested** |
+| [Bazzite](https://bazzite.gg/) | Bazzite DX GNOME NVIDIA | Not tested yet |
+| [Bazzite](https://bazzite.gg/) | Bazzite GDX KDE | Not tested yet |
+| [Bazzite](https://bazzite.gg/) | Bazzite Deck KDE | Not tested yet |
+| [Bazzite](https://bazzite.gg/) | Bazzite Deck GNOME | Not tested yet |
+| [Bazzite](https://bazzite.gg/) | Bazzite Deck NVIDIA | Not tested yet |
+| [Bazzite](https://bazzite.gg/) | Bazzite Deck GNOME NVIDIA | Not tested yet |
+| [Bluefin](https://projectbluefin.io/) | Bluefin | Not tested yet |
+| [Bluefin](https://projectbluefin.io/) | Bluefin NVIDIA | Not tested yet |
+| [Bluefin](https://projectbluefin.io/) | Bluefin DX | Not tested yet |
+| [Bluefin](https://projectbluefin.io/) | Bluefin DX NVIDIA | Not tested yet |
+| [Bluefin](https://projectbluefin.io/) | Bluefin Utah | Not tested yet |
+| [Bluefin](https://projectbluefin.io/) | Bluefin Utah NVIDIA | Not tested yet |
+| [Aurora](https://getaurora.dev/) | Aurora | Not tested yet |
+| [Aurora](https://getaurora.dev/) | Aurora NVIDIA | Not tested yet |
+
+Human-tested status depends on the specific laptop, GPU, kernel, and desktop
+variant. Project Bluefin Dakota is excluded because it is not compatible with
+the current BlueBuild recipes.
+
+Want to help expand hardware coverage? If you can test one of the unverified
+variants on your hardware, please [open an issue](https://github.com/yavasdev/ublue-tuxedo/issues)
+with the image variant, laptop model, GPU, and your test results.
+
 
 ## Verification
 
@@ -98,3 +135,56 @@ cosign verify --key cosign.pub ghcr.io/yavasdev/<image>:latest
 ## Extra Information: ISO Generation (Offline Installation)
 
 If you want to install this image from scratch on a computer using a USB drive, you can generate your own ISO file on a Fedora Atomic-based system. Check out the [BlueBuild ISO Guide](https://blue-build.org/how-to/generate-iso/#_top) for instructions. *(Since ISO files are very large, they cannot be hosted on GitHub for free and I don't want to bother it).*
+
+## Potentially supported devices
+
+These device families are potential candidates because they are TUXEDO
+laptops or use Clevo chassis. This is not a compatibility guarantee: the exact
+model, CPU/GPU configuration, firmware, and kernel all matter.
+
+### TUXEDO laptops
+
+- **InfinityBook:** InfinityBook Pro and InfinityBook Max families
+- **Stellaris:** Stellaris 16 and other Stellaris configurations
+- **Polaris:** Polaris 15/16 and other Polaris configurations
+- **Sirius:** Sirius 16 and other Sirius configurations
+- **Pulse:** Pulse 14/16 and other Pulse configurations
+- **Aura:** Aura 14/15 and other Aura configurations
+
+See the current [TUXEDO laptop lineup](https://www.tuxedocomputers.com/en/Linux-Hardware/Linux-Notebooks.tuxedo)
+for exact models and configurations.
+
+### Clevo-based laptops
+
+Clevo laptops are sold under many different brands, so the Clevo chassis
+identifier is often more useful than the retailer's model name. Potential
+families include:
+
+- **NH series:** NH50, NH55, NH57, NH58, NH70, NH77, and NH79
+- **NS series:** NS50, NS51, NS70, and NS7x
+- **P series:** P150, P151, P157, P170, and P7xx
+- **V series:** V140, V150, V15x, and V17x
+
+Known companies that have sold Clevo-based laptops, including historical or
+model-specific offerings, include:
+
+- **Turkey:** Monster Notebook
+- **North America:** Sager, Eurocom, HIDevolution, Eluktronics, Origin PC,
+  Xotic PC, Prostar, LPC Digital, Maingear, Digital Storm, and System76
+- **United Kingdom and Ireland:** PCSpecialist and Scan
+- **Germany and Central Europe:** Schenker/XMG, Medion, and PCW Polska
+- **Benelux:** BTO, NovaCustom, Laptop With Linux, and Clevocenter
+- **Portugal and Spain:** Obsidian-PC and Slimbook
+- **Poland and Eastern Europe:** Dream Machines
+- **Australia and New Zealand:** Metabox and Leader Computers
+- **Singapore and Southeast Asia:** Aftershock and Illegear
+- **Asia:** Thunderobot and other regional Clevo integrators and distributors
+
+This is a broad, non-exhaustive list. Some companies use a mixture of Clevo,
+Tongfang, Quanta, or proprietary chassis, and sourcing can change between
+product generations. The exact model and chassis identifier must therefore
+still be checked.
+
+For Clevo devices, check the chassis identifier reported by the firmware or
+`dmidecode` before opening a report. Please [open an issue](https://github.com/yavasdev/ublue-tuxedo/issues)
+with the exact model, Clevo chassis identifier, CPU, GPU, and test results.

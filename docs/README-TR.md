@@ -88,6 +88,45 @@ değiştikçe ek uyumluluk çalışması gerekebilir.
 Project Bluefin Dakota şu anda bu BlueBuild tarifleriyle uyumlu değildir.
 Dakota, burada kullanılan DNF paket yönetimi yerine BuildStream ile oluşturulur.
 
+## İnsan tarafından test edilen dağıtımlar
+
+Aşağıdaki tablo, fiziksel donanım üzerinde kurulup kullanılmış varyantları
+gösterir. CI üzerinde başarılı bir derleme, insan tarafından test edilmiş
+sayılmaz.
+
+| Dağıtım | Varyant | Test durumu |
+| --- | --- | --- |
+| [Bazzite](https://bazzite.gg/) | Bazzite KDE | Henüz test edilmedi |
+| [Bazzite](https://bazzite.gg/) | Bazzite GNOME | Henüz test edilmedi |
+| [Bazzite](https://bazzite.gg/) | Bazzite NVIDIA | Henüz test edilmedi |
+| [Bazzite](https://bazzite.gg/) | Bazzite GNOME NVIDIA | Henüz test edilmedi |
+| [Bazzite](https://bazzite.gg/) | Bazzite DX KDE | Henüz test edilmedi |
+| [Bazzite](https://bazzite.gg/) | Bazzite DX GNOME | Henüz test edilmedi |
+| [Bazzite](https://bazzite.gg/) | **Bazzite DX NVIDIA** | **İnsan tarafından test edildi** |
+| [Bazzite](https://bazzite.gg/) | Bazzite DX GNOME NVIDIA | Henüz test edilmedi |
+| [Bazzite](https://bazzite.gg/) | Bazzite GDX KDE | Henüz test edilmedi |
+| [Bazzite](https://bazzite.gg/) | Bazzite Deck KDE | Henüz test edilmedi |
+| [Bazzite](https://bazzite.gg/) | Bazzite Deck GNOME | Henüz test edilmedi |
+| [Bazzite](https://bazzite.gg/) | Bazzite Deck NVIDIA | Henüz test edilmedi |
+| [Bazzite](https://bazzite.gg/) | Bazzite Deck GNOME NVIDIA | Henüz test edilmedi |
+| [Bluefin](https://projectbluefin.io/) | Bluefin | Henüz test edilmedi |
+| [Bluefin](https://projectbluefin.io/) | Bluefin NVIDIA | Henüz test edilmedi |
+| [Bluefin](https://projectbluefin.io/) | Bluefin DX | Henüz test edilmedi |
+| [Bluefin](https://projectbluefin.io/) | Bluefin DX NVIDIA | Henüz test edilmedi |
+| [Bluefin](https://projectbluefin.io/) | Bluefin Utah | Henüz test edilmedi |
+| [Bluefin](https://projectbluefin.io/) | Bluefin Utah NVIDIA | Henüz test edilmedi |
+| [Aurora](https://getaurora.dev/) | Aurora | Henüz test edilmedi |
+| [Aurora](https://getaurora.dev/) | Aurora NVIDIA | Henüz test edilmedi |
+
+İnsan tarafından test edilmiş olma durumu; belirli dizüstü bilgisayara, GPU'ya,
+çekirdeğe ve masaüstü varyantına bağlıdır. Project Bluefin Dakota, mevcut
+BlueBuild tarifleriyle uyumlu olmadığı için listeye dahil edilmemiştir.
+
+Donanım kapsamını genişletmeye yardımcı olmak ister misiniz? Henüz
+doğrulanmamış varyantlardan birini kendi donanımınızda test edebiliyorsanız,
+lütfen imaj varyantını, dizüstü bilgisayar modelini, GPU'yu ve test sonuçlarınızı
+belirterek [bir issue açın](https://github.com/yavasdev/ublue-tuxedo/issues).
+
 ## Doğrulama
 
 Bu imajlar, [Sigstore](https://www.sigstore.dev/)'un [cosign](https://github.com/sigstore/cosign) aracı kullanılarak dijital olarak imzalanmıştır. İmajın orijinalliğini doğrulamak için bu depodan `cosign.pub` dosyasını indirebilir ve aşağıdaki komutu çalıştırabilirsiniz:
@@ -102,3 +141,58 @@ cosign verify --key cosign.pub ghcr.io/yavasdev/<image>:latest
 ## Ek Bilgi: ISO Oluşturma (Çevrimdışı Kurulum)
 
 Eğer bu imajı bir USB sürücü kullanarak bir bilgisayara sıfırdan kurmak isterseniz, Fedora Atomik tabanlı bir sistemde kendi ISO dosyanızı oluşturabilirsiniz. Talimatlar için [BlueBuild ISO Rehberi](https://blue-build.org/how-to/generate-iso/#_top)'ne göz atın. *(ISO dosyaları çok büyük olduğundan GitHub üzerinde ücretsiz olarak barındırılamıyor ve ben de bununla uğraşmak istemiyorum).*
+
+## Potansiyel olarak desteklenebilecek cihazlar
+
+Bu cihaz aileleri TUXEDO dizüstü bilgisayarları olduğu veya Clevo kasalarını
+kullandığı için potansiyel adaylardır. Bu bir uyumluluk garantisi değildir;
+kesin model, CPU/GPU yapılandırması, firmware ve çekirdek sürümü önemlidir.
+
+### TUXEDO dizüstü bilgisayarları
+
+- **InfinityBook:** InfinityBook Pro ve InfinityBook Max aileleri
+- **Stellaris:** Stellaris 16 ve diğer Stellaris yapılandırmaları
+- **Polaris:** Polaris 15/16 ve diğer Polaris yapılandırmaları
+- **Sirius:** Sirius 16 ve diğer Sirius yapılandırmaları
+- **Pulse:** Pulse 14/16 ve diğer Pulse yapılandırmaları
+- **Aura:** Aura 14/15 ve diğer Aura yapılandırmaları
+
+Kesin model ve yapılandırmalar için güncel
+[TUXEDO dizüstü bilgisayar listesine](https://www.tuxedocomputers.com/en/Linux-Hardware/Linux-Notebooks.tuxedo)
+bakabilirsiniz.
+
+### Clevo tabanlı dizüstü bilgisayarlar
+
+Clevo dizüstü bilgisayarları farklı markalar altında satıldığından, satıcı
+model adından ziyade Clevo kasa tanımlayıcısı daha kullanışlı olabilir.
+Potansiyel aileler şunlardır:
+
+- **NH serisi:** NH50, NH55, NH57, NH58, NH70, NH77 ve NH79
+- **NS serisi:** NS50, NS51, NS70 ve NS7x
+- **P serisi:** P150, P151, P157, P170 ve P7xx
+- **V serisi:** V140, V150, V15x ve V17x
+
+Clevo tabanlı dizüstü bilgisayarlar satan, geçmişte satmış olan veya belirli
+modellerinde Clevo kullanan bilinen şirketler şunlardır:
+
+- **Türkiye:** Monster Notebook
+- **Kuzey Amerika:** Sager, Eurocom, HIDevolution, Eluktronics, Origin PC,
+  Xotic PC, Prostar, LPC Digital, Maingear, Digital Storm ve System76
+- **Birleşik Krallık ve İrlanda:** PCSpecialist ve Scan
+- **Almanya ve Orta Avrupa:** Schenker/XMG, Medion ve PCW Polska
+- **Benelüks:** BTO, NovaCustom, Laptop With Linux ve Clevocenter
+- **Portekiz ve İspanya:** Obsidian-PC ve Slimbook
+- **Polonya ve Doğu Avrupa:** Dream Machines
+- **Avustralya ve Yeni Zelanda:** Metabox ve Leader Computers
+- **Singapur ve Güneydoğu Asya:** Aftershock ve Illegear
+- **Asya:** Thunderobot ve diğer bölgesel Clevo entegratörleri ve
+  distribütörleri
+
+Bu liste geniş ancak kapsamlı değildir. Bazı şirketler Clevo kasalarının yanı
+sıra Tongfang, Quanta veya kendi tasarımları olan kasaları da kullanabilir;
+kasa tedariki ürün nesilleri arasında değişebilir. Bu nedenle kesin model ve
+kasa tanımlayıcısı yine de kontrol edilmelidir.
+
+Clevo cihazlarda rapor açmadan önce firmware veya `dmidecode` ile kasa
+tanımlayıcısını kontrol edin. Lütfen kesin model, Clevo kasa tanımlayıcısı,
+CPU, GPU ve test sonuçlarıyla [bir issue açın](https://github.com/yavasdev/ublue-tuxedo/issues).
