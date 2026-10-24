@@ -1,5 +1,5 @@
-# ublue-tuxedo
-[![Build ublue-tuxedo Images](https://github.com/yavasdev/bazzite-tuxedo/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/yavasdev/bazzite-tuxedo/actions/workflows/build.yml)
+# uBlue Tuxedo — Universal Blue Images for TUXEDO and Clevo Laptops
+[![Build ublue-tuxedo Images](https://github.com/yavasdev/ublue-tuxedo/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/yavasdev/ublue-tuxedo/actions/workflows/build.yml)
 
 
 [🇺🇸 English](README.md) | [🇹🇷 Türkçe](docs/README-TR.md) 
