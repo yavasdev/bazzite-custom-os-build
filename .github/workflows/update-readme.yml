@@ -1,4 +1,4 @@
-name: Update README Badges
+name: Update README with Template Variables
 
 # When will this workflow run?
 on:
