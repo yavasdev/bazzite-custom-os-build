@@ -12,6 +12,9 @@ on:
       - "docs/**.md"
 
   pull_request:
+    paths-ignore: # don't rebuild if only documentation has changed
+      - "**.md"
+      - "docs/**.md"
   workflow_dispatch: # allow manually triggering builds
 concurrency:
   # only run one build at a time
