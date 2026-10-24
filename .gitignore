@@ -4,3 +4,5 @@ cosign.private
 *.iso
 *.iso-CHECKSUM
 recipes-disabled/
+README.md
+docs/README-TR.md
