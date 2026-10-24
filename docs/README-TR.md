@@ -30,6 +30,21 @@ script'i çekirdeğin Fedora sürümünü dinamik olarak bulur ve tam eşleşen
 değiştirecektir. Seçtiğiniz imaj varyantının donanımınız, taban imajınız ve
 mevcut kurulumunuzla uyumlu olduğundan emin olun.
 
+> [!WARNING]  
+> Bu imajlar deneyseldir ve tamamen test edilmediler. Riski size ait olmak üzere deneyin.
+
+
+### Mevcut Bazzite kullanıcıları
+
+Mevcut Bazzite kurulumunuzdan rebase işlemine başlamadan önce upstream,
+katmanlı paketleri kaldırmanızı önerir:
+
+```bash
+rpm-ostree reset
+```
+
+Donanımınızla uyumlu bir imaj seçin ve rebase sırasında mevcut kurulumunuzla aynı masaüstü ortamını koruyun. 
+
 Yayımlanmış bir imaja geçmek için aşağıdaki komutlarda `<image>` yerine
 kullanmak istediğiniz recipe tarafından oluşturulan imaj adını yazın:
 

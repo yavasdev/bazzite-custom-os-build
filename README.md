@@ -29,6 +29,17 @@ release and downloads the exact `kernel-devel` package from Fedora Koji.
 > [!WARNING]  
 > These images are experimental and have not been fully tested. Use them at your own discretion.
 
+### Existing Bazzite users
+
+Before rebasing from an existing Bazzite installation, upstream recommends
+removing layered packages:
+
+```bash
+rpm-ostree reset
+```
+
+Choose an image that matches your hardware and keep the same desktop environment as your current installation when rebasing.
+
 To rebase an existing Atomic Fedora installation to a published image, replace
 `<image>` with the name of the recipe-built image you want to use:
 
