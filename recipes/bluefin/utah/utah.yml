@@ -5,11 +5,10 @@ name: utah-tuxedo
 description: Utah with Tuxedo drivers and Control Center.
 
 alt-tags:
-  #- stable
-  - testing
+  - stable
 
 base-image: ghcr.io/projectbluefin/utah
-image-version: testing #stable
+image-version: stable
 
 modules:
   - type: files
