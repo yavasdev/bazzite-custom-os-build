@@ -18,9 +18,6 @@ modules:
         destination: /
   
   - type: dnf
-    repos:
-      files:
-        - fedora-44.repo
     install:
       packages:
         - git
@@ -29,7 +26,6 @@ modules:
         - kmod
         - curl
         - cpio
-        - kernel-devel
 
   - type: script
     scripts:
