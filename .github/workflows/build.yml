@@ -7,23 +7,24 @@ on:
   push:
     branches:
       - main
-    paths-ignore: # don't rebuild if only documentation has changed
+    paths-ignore: # don't rebuild if only documentation have changed
       - "**.md"
-      - "docs/**.md"
-      - "docs/tests/**/*"
+      - "docs/**"
 
   pull_request:
     paths-ignore: # don't rebuild if only documentation has changed
       - "**.md"
-      - "docs/**.md"
-      - "docs/tests/**/*"
+      - "docs/**"
+      - ".github/workflows/**"
   workflow_dispatch: # allow manually triggering builds
+
 concurrency:
   # only run one build at a time
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
   cancel-in-progress: true
 jobs:
   recipes:
+    name: create-recipe-matrix
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -31,7 +32,6 @@ jobs:
       matrix: ${{ steps.find-recipes.outputs.matrix }}
     steps:
       - uses: actions/checkout@v5
-
       - id: find-recipes
         run: |
           recipes=$(find recipes -maxdepth 3 -type f -name '*.yml' ! -name 'recipe-example.yml' ! -empty -printf '%P\n' | sort | jq -R -s -c 'split("\n") | map(select(length > 0))')
