@@ -25,7 +25,7 @@ jobs:
     outputs:
       matrix: ${{ steps.find-recipes.outputs.matrix }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - id: find-recipes
         run: |
