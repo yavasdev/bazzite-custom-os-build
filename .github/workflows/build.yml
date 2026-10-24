@@ -9,17 +9,14 @@ on:
       - main
     paths-ignore: # don't rebuild if only documentation and workflows have changed
       - "**.md"
-      - "**.txt"
-      - "docs/**"
-      - ".github/workflows/**"
-      - "badges/**"
+      - "docs/**.md"
+      - "docs/tests/**/*"
+
   pull_request:
-    paths-ignore: # don't rebuild if only documentation and workflows have changed
+    paths-ignore: # don't rebuild if only documentation has changed
       - "**.md"
-      - "**.txt"
-      - "docs/**"
-      - ".github/workflows/**"
-      - "badges/**"
+      - "docs/**.md"
+      - "docs/tests/**/*"
   workflow_dispatch: # allow manually triggering builds
 
 concurrency:
