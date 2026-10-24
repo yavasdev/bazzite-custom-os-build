@@ -15,6 +15,7 @@ on:
     paths-ignore: # don't rebuild if only documentation has changed
       - "**.md"
       - "docs/**"
+      - ".github/workflows/**"
   workflow_dispatch: # allow manually triggering builds
 
 concurrency:
@@ -24,7 +25,6 @@ concurrency:
 jobs:
   recipes:
     name: create-recipe-matrix
-    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     permissions:
       contents: read
