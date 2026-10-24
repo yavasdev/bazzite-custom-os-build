@@ -1,0 +1,38 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+
+name: utah-tuxedo
+description: Utah with Tuxedo drivers and Control Center.
+
+alt-tags:
+  - stable
+
+base-image: ghcr.io/projectbluefin/utah
+image-version: stable
+
+modules:
+  - type: files
+    files:
+      - source: system
+        destination: /
+  
+  - type: dnf
+    install:
+      packages:
+        - git
+        - make
+        - gcc
+        - kmod
+        - curl
+        - cpio
+
+  - type: script
+    scripts:
+      - build-tuxedo.sh
+
+  - type: systemd
+    system:
+      enabled:
+        - tccd.service
+
+  - type: signing

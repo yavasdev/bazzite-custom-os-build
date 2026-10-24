@@ -1,0 +1,40 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+
+name: bluefin-dx-tuxedo
+description: Bluefin DX with Tuxedo drivers and Control Center.
+
+alt-tags:
+  - stable
+
+base-image: ghcr.io/ublue-os/bluefin-dx
+image-version: stable
+
+modules:
+  - type: files
+    files:
+      - source: system
+        destination: /
+  
+  - type: dnf
+    install:
+      packages:
+        - git
+        - make
+        - gcc
+        - kmod
+        - curl
+        - wget
+        - cpio
+        - kernel-devel
+
+  - type: script
+    scripts:
+      - build-tuxedo.sh
+
+  - type: systemd
+    system:
+      enabled:
+        - tccd.service
+
+  - type: signing
