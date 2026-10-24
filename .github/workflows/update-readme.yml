@@ -23,19 +23,11 @@ jobs:
       - name: Generate READMEs from templates
         run: bash files/scripts/generate-readmes.sh
 
-      - name: Commit and push READMEs
+      - name: add generated files to git
         run: |
           # Add both generated files to the Git staging area
           git add README.md docs/README-TR.md
-          
-          # Check if there are any actual changes
-          if git diff --staged --quiet; then
-            echo "No changes detected, skipping commit."
-            exit 0
-          fi
-          
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "docs: generate README and README-TR with updated variables"
-          
-          git push origin "HEAD:${GITHUB_REF_NAME}"
+        
+      - name: Commit and push changes
+        run: |
+          bash files/scripts/git-check-and-push.sh
