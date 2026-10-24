@@ -7,7 +7,7 @@ on:
   push:
     branches:
       - main
-    paths-ignore: # don't rebuild if only documentation and workflows have changed
+    paths-ignore: # don't rebuild if only documentation have changed
       - "**.md"
       - "docs/**"
 
@@ -24,6 +24,7 @@ concurrency:
 jobs:
   recipes:
     name: create-recipe-matrix
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     permissions:
       contents: read
