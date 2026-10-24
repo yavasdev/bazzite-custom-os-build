@@ -7,12 +7,21 @@ on:
   push:
     branches:
       - main
-    paths-ignore: # don't rebuild if only documentation has changed
+    paths-ignore: # don't rebuild if only documentation and workflows have changed
       - "**.md"
-      - "docs/**.md"
-
+      - "**.txt"
+      - "docs/**"
+      - ".github/workflows/**"
+      - "badges/**"
   pull_request:
+    paths-ignore: # don't rebuild if only documentation and workflows have changed
+      - "**.md"
+      - "**.txt"
+      - "docs/**"
+      - ".github/workflows/**"
+      - "badges/**"
   workflow_dispatch: # allow manually triggering builds
+
 concurrency:
   # only run one build at a time
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
@@ -72,6 +81,80 @@ jobs:
         run: |
           test "$RECIPES_RESULT" = "success"
           test "$BLUEBUILD_RESULT" = "success"
+
+  update-image-badges:
+    name: update image badges
+    if: github.event_name != 'pull_request'
+    needs: build-success
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: read
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Generate image version badges
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p badges
+          find badges -type f -name '*.json' -delete
+
+          while IFS= read -r recipe; do
+            image=$(sed -n 's/^name: *//p' "$recipe")
+            [ -n "$image" ] || continue
+
+            configured=$(grep -hE '^[[:space:]]+- (stable|testing|latest)$' "$recipe" |
+              sed 's/^[[:space:]]*- //' | sort -u | tr '\n' ' ')
+            while IFS= read -r channel; do
+              if [[ " $configured " != *" $channel "* ]]; then
+                version="not configured"
+                color="lightgrey"
+              else
+                versions=$(gh api --paginate \
+                  "/users/${GITHUB_REPOSITORY_OWNER}/packages/container/${image}/versions?per_page=100" \
+                  --jq '.[]' 2>/dev/null | jq -s '.' || printf '[]')
+              version=$(jq -r --arg channel "$channel" '
+                [.[] | select(.metadata.container.tags != null)
+                | select(any(.metadata.container.tags[]; . == $channel or startswith($channel + "-")))]
+                | sort_by(.created_at) | last
+                | if . == null then empty
+                  else ([.metadata.container.tags[] | select(. == $channel or startswith($channel + "-"))] | first)
+                    + " · " + (.created_at | split("T")[0])
+                  end
+              ' <<<"$versions")
+
+              if [ -z "$version" ]; then
+                version="not published"
+                color="lightgrey"
+              else
+                color="brightgreen"
+              fi
+              fi
+
+              jq -n \
+                --arg label "$channel" \
+                --arg message "$version" \
+                --arg color "$color" \
+                '{schemaVersion: 1, label: $label, message: $message, color: $color}' \
+                > "badges/${image}-${channel}.json"
+            done < <(printf '%s\n' stable testing latest)
+          done < <(find recipes -maxdepth 3 -type f -name '*.yml' ! -name 'recipe-example.yml' ! -empty | sort)
+
+      - name: Commit image badges
+        run: |
+          if git diff --quiet -- badges; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add badges
+          git commit -m "docs: update image version badges"
+          git push origin HEAD:main
 
   dependabot:
     name: dependabot auto-merge

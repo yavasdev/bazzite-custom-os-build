@@ -1,6 +1,48 @@
-# ublue-tuxedo &nbsp; [![Build ublue-tuxedo Images](https://github.com/yavasdev/bazzite-tuxedo/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/yavasdev/bazzite-tuxedo/actions/workflows/build.yml)
+# # uBlue Tuxedo — TUXEDO ve Clevo Dizüstü Bilgisayarları için Universal Blue İmajları 
+[![Latest build](https://github.com/yavasdev/ublue-tuxedo/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/yavasdev/ublue-tuxedo/actions/workflows/build.yml)
+[![GitHub stars](https://img.shields.io/github/stars/yavasdev/ublue-tuxedo?style=flat)](https://github.com/yavasdev/ublue-tuxedo/stargazers)
 
 [🇺🇸 English](README.md) | [🇹🇷 Türkçe](docs/README-TR.md)
+
+### Son imaj güncellemeleri
+
+Derlemeler otomatik olarak her gün yapılır. Bu kısa tablo, her tag'i
+genişletmeden her imaj için kaydedilen son güncellemeyi gösterir; ayrıntılı
+`stable`, `testing` ve `latest` bilgileri README'nin sonlarına yakın tutulur.
+
+Derlemeler her gün otomatik yapılır. Her badge başarılı bir derlemeden sonra
+yenilenir ve en son tag ile yayımlanma tarihini gösterir; badge'e tıklamak
+ilgili canlı GitHub Packages sayfasını açar.
+
+#### A–M imajları
+
+| İmaj | En son sürüm / tarih |
+| --- | --- |
+| [`aurora-tuxedo`](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/aurora-tuxedo) | [![En son build](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyavasdev%2Fublue-tuxedo%2Fmain%2Fbadges%2Faurora-tuxedo-stable.json)](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/aurora-tuxedo) |
+| [`bazzite-deck-gnome-nvidia-tuxedo`](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-deck-gnome-nvidia-tuxedo) | [![En son build](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyavasdev%2Fublue-tuxedo%2Fmain%2Fbadges%2Fbazzite-deck-gnome-nvidia-tuxedo-stable.json)](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-deck-gnome-nvidia-tuxedo) |
+| [`bazzite-deck-gnome-tuxedo`](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-deck-gnome-tuxedo) | [![En son build](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyavasdev%2Fublue-tuxedo%2Fmain%2Fbadges%2Fbazzite-deck-gnome-tuxedo-stable.json)](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-deck-gnome-tuxedo) |
+| [`bazzite-deck-nvidia-tuxedo`](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-deck-nvidia-tuxedo) | [![En son build](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyavasdev%2Fublue-tuxedo%2Fmain%2Fbadges%2Fbazzite-deck-nvidia-tuxedo-stable.json)](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-deck-nvidia-tuxedo) |
+| [`bazzite-deck-tuxedo`](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-deck-tuxedo) | [![En son build](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyavasdev%2Fublue-tuxedo%2Fmain%2Fbadges%2Fbazzite-deck-tuxedo-stable.json)](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-deck-tuxedo) |
+| [`bazzite-dx-gnome-nvidia-tuxedo`](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-dx-gnome-nvidia-tuxedo) | [![En son build](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyavasdev%2Fublue-tuxedo%2Fmain%2Fbadges%2Fbazzite-dx-gnome-nvidia-tuxedo-stable.json)](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-dx-gnome-nvidia-tuxedo) |
+| [`bazzite-dx-gnome-tuxedo`](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-dx-gnome-tuxedo) | [![En son build](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyavasdev%2Fublue-tuxedo%2Fmain%2Fbadges%2Fbazzite-dx-gnome-tuxedo-stable.json)](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-dx-gnome-tuxedo) |
+| [`bazzite-dx-nvidia-gnome-tuxedo`](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-dx-nvidia-gnome-tuxedo) | [![En son build](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyavasdev%2Fublue-tuxedo%2Fmain%2Fbadges%2Fbazzite-dx-nvidia-gnome-tuxedo-stable.json)](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-dx-nvidia-gnome-tuxedo) |
+| [`bazzite-dx-nvidia-tuxedo`](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-dx-nvidia-tuxedo) | [![En son build](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyavasdev%2Fublue-tuxedo%2Fmain%2Fbadges%2Fbazzite-dx-nvidia-tuxedo-stable.json)](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-dx-nvidia-tuxedo) |
+| [`bazzite-dx-tuxedo`](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-dx-tuxedo) | [![En son build](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyavasdev%2Fublue-tuxedo%2Fmain%2Fbadges%2Fbazzite-dx-tuxedo-stable.json)](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-dx-tuxedo) |
+#### N–Z imajları
+
+| İmaj | En son sürüm / tarih |
+| --- | --- |
+| [`bazzite-gdx-tuxedo`](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-gdx-tuxedo) | [![En son build](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyavasdev%2Fublue-tuxedo%2Fmain%2Fbadges%2Fbazzite-gdx-tuxedo-latest.json)](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-gdx-tuxedo) |
+| [`bazzite-gnome-nvidia-tuxedo`](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-gnome-nvidia-tuxedo) | [![En son build](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyavasdev%2Fublue-tuxedo%2Fmain%2Fbadges%2Fbazzite-gnome-nvidia-tuxedo-stable.json)](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-gnome-nvidia-tuxedo) |
+| [`bazzite-gnome-tuxedo`](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-gnome-tuxedo) | [![En son build](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyavasdev%2Fublue-tuxedo%2Fmain%2Fbadges%2Fbazzite-gnome-tuxedo-stable.json)](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-gnome-tuxedo) |
+| [`bazzite-nvidia-tuxedo`](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-nvidia-tuxedo) | [![En son build](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyavasdev%2Fublue-tuxedo%2Fmain%2Fbadges%2Fbazzite-nvidia-tuxedo-stable.json)](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-nvidia-tuxedo) |
+| [`bazzite-tuxedo`](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-tuxedo) | [![En son build](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyavasdev%2Fublue-tuxedo%2Fmain%2Fbadges%2Fbazzite-tuxedo-stable.json)](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-tuxedo) |
+| [`bluefin-dx-nvidia-tuxedo`](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bluefin-dx-nvidia-tuxedo) | [![En son build](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyavasdev%2Fublue-tuxedo%2Fmain%2Fbadges%2Fbluefin-dx-nvidia-tuxedo-stable.json)](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bluefin-dx-nvidia-tuxedo) |
+| [`bluefin-dx-tuxedo`](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bluefin-dx-tuxedo) | [![En son build](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyavasdev%2Fublue-tuxedo%2Fmain%2Fbadges%2Fbluefin-dx-tuxedo-stable.json)](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bluefin-dx-tuxedo) |
+| [`bluefin-nvidia-tuxedo`](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bluefin-nvidia-tuxedo) | [![En son build](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyavasdev%2Fublue-tuxedo%2Fmain%2Fbadges%2Fbluefin-nvidia-tuxedo-stable.json)](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bluefin-nvidia-tuxedo) |
+| [`bluefin-tuxedo`](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bluefin-tuxedo) | [![En son build](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyavasdev%2Fublue-tuxedo%2Fmain%2Fbadges%2Fbluefin-tuxedo-stable.json)](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bluefin-tuxedo) |
+| [`utah-nvidia-tuxedo`](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/utah-nvidia-tuxedo) | [![En son build](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyavasdev%2Fublue-tuxedo%2Fmain%2Fbadges%2Futah-nvidia-tuxedo-stable.json)](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/utah-nvidia-tuxedo) |
+| [`utah-tuxedo`](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/utah-tuxedo) | [![En son build](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyavasdev%2Fublue-tuxedo%2Fmain%2Fbadges%2Futah-tuxedo-stable.json)](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/utah-tuxedo) |
 
 Bu depo, uyumlu [Universal Blue](https://universal-blue.org/) taban imajları
 için Tuxedo sürücüleri ve uygulamalarıyla donatılmış özel **Atomik
@@ -19,6 +61,45 @@ symlink olarak eklenir. Çekirdek modülleri eşleşen çekirdek geliştirme
 dosyalarına karşı derlenir; base image depolarında uygun paket yoksa build
 script'i çekirdeğin Fedora sürümünü dinamik olarak bulur ve tam eşleşen
 `kernel-devel` paketini Fedora Koji'den indirir.
+
+## Bu depo hakkında
+
+Bu depo, popüler Universal Blue imajlarını TUXEDO/Clevo dizüstü
+bilgisayarları için Tuxedo sürücüleri ve Tuxedo Control Center ile hazırlar.
+[BlueBuild](https://blue-build.org/) tarifleri kullanılır ve imajlar bu deponun
+kendi GitHub Container Registry alanına imzalı olarak yayımlanır.
+
+İş akışı her gün **06:00 UTC** saatinde, upstream imajların genellikle derlenmeye
+başlamasından kısa süre sonra çalışır. Böylece kullanıcıların yerel derleme
+yapmasına gerek kalmadan imajlar güncel tutulur.
+
+Tarifler BlueBuild'in `dnf` modülünü kullandığı için bu yaklaşım, sisteminde
+DNF desteği bulunan popüler Universal Blue imajlarının çoğuna genişletilebilir.
+Elbette paketlerin ve çekirdek kaynaklarının uyumlu olması gerekir.
+
+### Güçlü yönler
+
+- Günlük zamanlanmış derlemeler ve tarif değişikliklerinde derleme.
+- Bazzite, Bluefin, Aurora ve seçili Utah varyantları.
+- Cosign ile imzalanan ve bu depodaki açık anahtarla doğrulanabilen imajlar.
+- Eşleşen çekirdek için derlenen sürücüler ve kurulum script'lerine bağlı
+  olmayan TCC kurulumu.
+
+### Eski TCC deposu yerine neden bunu seçmeli?
+
+[BrickMan240/ublue-tuxedo-tcc](https://github.com/BrickMan240/ublue-tuxedo-tcc)
+TUXEDO desteği için önemli bir erken seçenekti. Bu depo, bakımı yapılan tarif
+tabanlı bir imaj seti isteyenler için daha uygundur: daha fazla Universal Blue
+varyantı kapsar, güncel BlueBuild iş akışını kullanır, günlük derlenir ve kendi
+imzalı imajlarını yayımlar. Eski proje hâlâ yararlı bir referanstır; ancak
+başlangıçtaki amacı upstream desteği gelişene kadar geçici bir çözüm sunmaktı.
+
+| Depo | GitHub yıldızları | Son etkinlik | Derleme tetikleyicisi | Registry | İmzalama | Kapsam |
+| --- | ---: | --- | --- | --- | --- | --- |
+| [yavasdev/ublue-tuxedo](https://github.com/yavasdev/ublue-tuxedo) | [![GitHub stars](https://img.shields.io/github/stars/yavasdev/ublue-tuxedo?style=flat)](https://github.com/yavasdev/ublue-tuxedo/stargazers) | [Depo etkinliği](https://github.com/yavasdev/ublue-tuxedo/commits/main) | Her gün 06:00 UTC ve recipe değişiklikleri | Kendi [GHCR paketleri](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-dx-nvidia-tuxedo) | [`cosign.pub`](../cosign.pub) ile Cosign | Birden fazla popüler Universal Blue ailesi için BlueBuild tarifleri |
+| [BrickMan240/ublue-tuxedo-tcc](https://github.com/BrickMan240/ublue-tuxedo-tcc) | [![GitHub stars](https://img.shields.io/github/stars/BrickMan240/ublue-tuxedo-tcc?style=flat)](https://github.com/BrickMan240/ublue-tuxedo-tcc/stargazers) | [Son depo güncellemesi](https://github.com/BrickMan240/ublue-tuxedo-tcc/commits/main) | Shell/build script tabanlı | Kendi GHCR imajları | Depodaki Cosign anahtarı | Eski TCC ve sürücü entegrasyonu |
+
+Tablodaki yıldız sayıları GitHub'dan canlı olarak yüklenir.
 
 > [!WARNING]  
 > Özel imajlar, Fedora projesinde [deneysel bir özelliktir](https://www.fedoraproject.org/wiki/Changes/OstreeNativeContainerStable), riski size ait olmak üzere deneyin.
@@ -72,7 +153,7 @@ gösterir. `stable` etiketi, bunu tanımlayan tariflerde yayımlanır.
 
 ## Recipe ve taban imaj notları
 
-Bu, yalnızca Bazzite'e odaklanan bir depo değil, genel bir ublue-tuxedo
+Bu, yalnızca Bazzite'e odaklanan bir depo değil, popüler bir uBlue-tuxedo
 projesidir. Tarifler Bazzite, Bluefin, Aurora ve seçili Project Bluefin
 imajları dahil olmak üzere birden fazla Universal Blue ailesini kapsar. Her
 recipe taban imajı, paketleri, imaj adını ve desteklenen varyantı belirler.
@@ -101,3 +182,139 @@ cosign verify --key cosign.pub ghcr.io/yavasdev/<image>:latest
 ## Ek Bilgi: ISO Oluşturma (Çevrimdışı Kurulum)
 
 Eğer bu imajı bir USB sürücü kullanarak bir bilgisayara sıfırdan kurmak isterseniz, Fedora Atomik tabanlı bir sistemde kendi ISO dosyanızı oluşturabilirsiniz. Talimatlar için [BlueBuild ISO Rehberi](https://blue-build.org/how-to/generate-iso/#_top)'ne göz atın. *(ISO dosyaları çok büyük olduğundan GitHub üzerinde ücretsiz olarak barındırılamıyor ve ben de bununla uğraşmak istemiyorum).*
+
+## Potansiyel olarak desteklenebilecek cihazlar
+
+Bu cihaz aileleri TUXEDO dizüstü bilgisayarları olduğu veya Clevo kasalarını
+kullandığı için potansiyel adaylardır. Bu bir uyumluluk garantisi değildir;
+kesin model, CPU/GPU yapılandırması, firmware ve çekirdek sürümü önemlidir.
+
+### TUXEDO dizüstü bilgisayarları
+
+- **InfinityBook:** InfinityBook Pro ve InfinityBook Max aileleri
+- **Stellaris:** Stellaris 16 ve diğer Stellaris yapılandırmaları
+- **Polaris:** Polaris 15/16 ve diğer Polaris yapılandırmaları
+- **Sirius:** Sirius 16 ve diğer Sirius yapılandırmaları
+- **Pulse:** Pulse 14/16 ve diğer Pulse yapılandırmaları
+- **Aura:** Aura 14/15 ve diğer Aura yapılandırmaları
+
+Kesin model ve yapılandırmalar için güncel
+[TUXEDO dizüstü bilgisayar listesine](https://www.tuxedocomputers.com/en/Linux-Hardware/Linux-Notebooks.tuxedo)
+bakabilirsiniz.
+
+### Clevo tabanlı dizüstü bilgisayarlar
+
+Clevo dizüstü bilgisayarları farklı markalar altında satıldığından, satıcı
+model adından ziyade Clevo kasa tanımlayıcısı daha kullanışlı olabilir.
+Potansiyel aileler şunlardır:
+
+- **NH serisi:** NH50, NH55, NH57, NH58, NH70, NH77 ve NH79
+- **NS serisi:** NS50, NS51, NS70 ve NS7x
+- **P serisi:** P150, P151, P157, P170 ve P7xx
+- **V serisi:** V140, V150, V15x ve V17x
+
+Clevo tabanlı dizüstü bilgisayarlar satan, geçmişte satmış olan veya belirli
+modellerinde Clevo kullanan bilinen şirketler şunlardır:
+
+- **Türkiye:** Monster Notebook
+- **Kuzey Amerika:** Sager, Eurocom, HIDevolution, Eluktronics, Origin PC,
+  Xotic PC, Prostar, LPC Digital, Maingear, Digital Storm ve System76
+- **Birleşik Krallık ve İrlanda:** PCSpecialist ve Scan
+- **Almanya ve Orta Avrupa:** Schenker/XMG, Medion ve PCW Polska
+- **Benelüks:** BTO, NovaCustom, Laptop With Linux ve Clevocenter
+- **Portekiz ve İspanya:** Obsidian-PC ve Slimbook
+- **Polonya ve Doğu Avrupa:** Dream Machines
+- **Avustralya ve Yeni Zelanda:** Metabox ve Leader Computers
+- **Singapur ve Güneydoğu Asya:** Aftershock ve Illegear
+- **Asya:** Thunderobot ve diğer bölgesel Clevo entegratörleri ve
+  distribütörleri
+
+Bu liste geniş ancak kapsamlı değildir. Bazı şirketler Clevo kasalarının yanı
+sıra Tongfang, Quanta veya kendi tasarımları olan kasaları da kullanabilir;
+kasa tedariki ürün nesilleri arasında değişebilir. Bu nedenle kesin model ve
+kasa tanımlayıcısı yine de kontrol edilmelidir.
+
+Clevo cihazlarda rapor açmadan önce firmware veya `dmidecode` ile kasa
+tanımlayıcısını kontrol edin. Lütfen kesin model, Clevo kasa tanımlayıcısı,
+CPU, GPU ve test sonuçlarıyla [bir issue açın](https://github.com/yavasdev/ublue-tuxedo/issues).
+
+<!-- BEGIN TAGGED IMAGE VERSIONS -->
+## Son etiketlenmiş imaj sürümleri
+
+Badge bağlantıları statiktir; gösterilen sürüm ve yayımlanma tarihi ise her
+başarılı derlemeden sonra GitHub Actions tarafından yenilenen küçük JSON
+dosyalarından gelir. Badge'e tıklamak ilgili canlı GitHub Packages sayfasını
+açar. GitHub README görünümü yan yana Markdown tablolarını güvenilir biçimde
+desteklemediği için liste iki okunabilir tabloya ayrılmıştır.
+
+#### A–M imajları
+
+| İmaj | Stable version / date | Testing version / date | Latest version / date |
+| --- | --- | --- | --- |
+| `aurora-tuxedo` | Yayımlanmadı | Yayımlanmadı | Yayımlanmadı |
+| `bazzite-deck-gnome-nvidia-tuxedo` | Yayımlanmadı | Yayımlanmadı | Yayımlanmadı |
+| `bazzite-deck-gnome-tuxedo` | Yayımlanmadı | Yayımlanmadı | Yayımlanmadı |
+| `bazzite-deck-nvidia-tuxedo` | Yayımlanmadı | Yayımlanmadı | Yayımlanmadı |
+| `bazzite-deck-tuxedo` | Yayımlanmadı | Yayımlanmadı | Yayımlanmadı |
+| `bazzite-dx-gnome-nvidia-tuxedo` | Yayımlanmadı | Yayımlanmadı | Yayımlanmadı |
+| `bazzite-dx-gnome-tuxedo` | Yayımlanmadı | Yayımlanmadı | Yayımlanmadı |
+| `bazzite-dx-nvidia-gnome-tuxedo` | Yayımlanmadı | Yayımlanmadı | Yayımlanmadı |
+| `bazzite-dx-nvidia-tuxedo` | [`stable`](https://github.com/users/yavasdev/packages/container/bazzite-dx-nvidia-tuxedo/1439198229?tag=stable) · [`stable-44`](https://github.com/users/yavasdev/packages/container/bazzite-dx-nvidia-tuxedo/1439198229?tag=stable-44) · [`20261024-stable-44`](https://github.com/users/yavasdev/packages/container/bazzite-dx-nvidia-tuxedo/1439198229?tag=20261024-stable-44) | Yayımlanmadı | Yayımlanmadı |
+
+#### N–Z imajları
+
+| İmaj | Stable version / date | Testing version / date | Latest version / date |
+| --- | --- | --- | --- |
+| `bazzite-dx-tuxedo` | Yayımlanmadı | Yayımlanmadı | Yayımlanmadı |
+| `bazzite-gdx-tuxedo` | Yayımlanmadı | Yayımlanmadı | [`latest`](https://github.com/yavasdev/ublue-tuxedo/pkgs/container/bazzite-gdx-tuxedo) |
+| `bazzite-gnome-nvidia-tuxedo` | Yayımlanmadı | Yayımlanmadı | Yayımlanmadı |
+| `bazzite-gnome-tuxedo` | Yayımlanmadı | Yayımlanmadı | Yayımlanmadı |
+| `bazzite-nvidia-tuxedo` | Yayımlanmadı | Yayımlanmadı | Yayımlanmadı |
+| `bazzite-tuxedo` | Yayımlanmadı | Yayımlanmadı | Yayımlanmadı |
+| `bluefin-dx-nvidia-tuxedo` | Yayımlanmadı | Yayımlanmadı | Yayımlanmadı |
+| `bluefin-dx-tuxedo` | Yayımlanmadı | Yayımlanmadı | Yayımlanmadı |
+| `bluefin-nvidia-tuxedo` | Yayımlanmadı | Yayımlanmadı | Yayımlanmadı |
+| `bluefin-tuxedo` | Yayımlanmadı | Yayımlanmadı | Yayımlanmadı |
+| `utah-nvidia-tuxedo` | Yayımlanmadı | Yayımlanmadı | Yayımlanmadı |
+| `utah-tuxedo` | Yayımlanmadı | Yayımlanmadı | Yayımlanmadı |
+
+Her imajın registry sayfasına tablodaki canlı bağlantılardan ulaşılabilir.
+
+<!-- END TAGGED IMAGE VERSIONS -->
+
+## Sınırlamalar ve gelecek çalışmalar
+
+- Upstream taban imajı değişmemiş olsa bile mevcut iş akışı imajları yeniden
+  derler. Gereksiz derlemeleri önlemek için upstream güncelleme denetleyicisi
+  gereklidir.
+- `recipes/` klasörü dışındaki değişikliklerin otomatik keşfi yoktur. Sağlam bir
+  çözüm, taban depolarının etiketlerini kontrol etmeyi ve yeni taban depolarını
+  keşfetmeyi gerektirir; ikinci özellik karmaşık ve mevcut kapsam için
+  gereksizdir.
+- Tariflerde benzer yapılandırmalar tekrarlanır. Manifest tabanlı veya daha
+  bildirimsel bir biçim bakımı kolaylaştırabilir.
+
+## Yapılacaklar
+
+- [ ] Değişmemiş upstream taban imajları için güncelleme denetleyicisi eklemek.
+- [ ] `recipes/` dışındaki depo ve taban imajı etiketlerini denetlemek.
+- [ ] Yeni desteklenen taban depolarını otomatik keşfetmeyi değerlendirmek.
+- [ ] Manifest veya ortak bildirimsel bileşenlerle tarif tekrarlarını azaltmak.
+- [ ] Donanım testlerini genişletmek ve doğrulanmış laptop modellerini belgelemek.
+
+## Katkıda bulunanlar
+
+- Tarif biçimi ve derleme sistemi için [BlueBuild](https://github.com/blue-build)
+  ve [BlueBuild GitHub Action](https://github.com/blue-build/github-action).
+- Bazzite, Bluefin ve Aurora taban imajlarının geliştiricileriyle birlikte
+  [Universal Blue](https://github.com/ublue-os).
+- Sürücüler ve Tuxedo Control Center için
+  [TUXEDO Computers](https://github.com/tuxedocomputers).
+- Proje katkıcıları ve kod sahipleri:
+  [@yavasdev](https://github.com/yavasdev),
+  [@xynydev](https://github.com/xynydev) ve
+  [@fiftydinar](https://github.com/fiftydinar).
+
+## Depo geçmişi
+
+[![Star History Chart](https://api.star-history.com/svg?repos=yavasdev/ublue-tuxedo%2CBrickMan240/ublue-tuxedo-tcc&type=Date)](https://star-history.com/#yavasdev/ublue-tuxedo&BrickMan240/ublue-tuxedo-tcc&Date)
