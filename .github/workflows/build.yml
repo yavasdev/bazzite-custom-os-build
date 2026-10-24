@@ -28,16 +28,16 @@ jobs:
     outputs:
       matrix: ${{ steps.find-recipes.outputs.matrix }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - id: find-recipes
         run: |
-          recipes=$(find recipes -maxdepth 1 -type f ! -name 'recipe-example.yml' -printf '%f\n' | sort | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          recipes=$(find recipes -maxdepth 3 -type f -name '*.yml' ! -name 'recipe-example.yml' ! -empty -printf '%P\n' | sort | jq -R -s -c 'split("\n") | map(select(length > 0))')
           echo "matrix={\"recipe\":$recipes}" >> "$GITHUB_OUTPUT"
 
   bluebuild:
     needs: recipes
-    name: Build Bazzite Tuxedo Images - bluebuild
+    name: bluebuild
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -49,7 +49,7 @@ jobs:
       matrix: ${{ fromJSON(needs.recipes.outputs.matrix) }}
     steps:
       # the build is fully handled by the reusable github action
-      - name: Build Custom Image - steps
+      - name: steps
         uses: blue-build/github-action@v1.13
         with:
           recipe: ${{ matrix.recipe }}
@@ -59,3 +59,39 @@ jobs:
 
           # enabled by default, disable if your image is small and you want faster builds
           maximize_build_space: true
+  
+  build-success:
+    name: build-success
+    if: always()
+    needs:
+      - recipes
+      - bluebuild
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify build result
+        env:
+          RECIPES_RESULT: ${{ needs.recipes.result }}
+          BLUEBUILD_RESULT: ${{ needs.bluebuild.result }}
+        run: |
+          test "$RECIPES_RESULT" = "success"
+          test "$BLUEBUILD_RESULT" = "success"
+
+  dependabot:
+    name: dependabot auto-merge
+    needs: build-success
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    if: >-
+      ${{
+        github.event_name == 'pull_request' &&
+        github.event.pull_request.user.login == 'dependabot[bot]' &&
+        needs.build-success.result == 'success'
+      }}
+    steps:
+      - name: "Merge Dependabot Pull Request automatically"
+        run: gh pr merge --auto --squash "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
